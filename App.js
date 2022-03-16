@@ -1,10 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaView } from "react-native";
-import Home from "./app/views/Home";
-import Site from "./app/views/Site";
-import NewSite from "./app/views/New";
-import CameraView from "./app/views/CameraView";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
+import Home from "./app/views/Home/Home";
 
 const Stack = createStackNavigator();
 
@@ -17,18 +15,17 @@ const MyStack = () => {
       }}
     >
       <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Site" component={Site} />
-      <Stack.Screen name="New" component={NewSite} />
-      <Stack.Screen name="Camera" component={CameraView} />
     </Stack.Navigator>
   );
 };
 
 function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <SafeAreaProvider mode="padding">
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
