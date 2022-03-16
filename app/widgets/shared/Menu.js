@@ -94,7 +94,7 @@ const Menu = () => {
   };
 
   useEffect(() => {
-    handleLoadSites();
+    // handleLoadSites();
   }, []);
 
   if (loading) {

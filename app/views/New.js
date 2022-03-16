@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, Icon, Input } from "react-native-elements";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Login from "../widgets/Login";
+import Login from "../widgets/shared/Login";
 import SvgUri from "expo-svg-uri";
 import { useNavigation } from "@react-navigation/native";
 
