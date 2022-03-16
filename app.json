@@ -3,8 +3,8 @@
     "packagerOpts": {
       "config": "metro.config.js"
     },
-    "name": "dondeEstaMiCoche",
-    "slug": "dondeEstaMiCoche",
+    "name": "ereselmejor",
+    "slug": "ereselmejor",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

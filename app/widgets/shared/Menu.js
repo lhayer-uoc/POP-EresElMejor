@@ -8,7 +8,7 @@ import {
   FlatList,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import getSitesService from "../services/getSites";
+import getSitesService from "../../services/getSites";
 
 let sites = [];
 const styles = StyleSheet.create({
