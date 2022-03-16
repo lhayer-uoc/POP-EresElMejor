@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Login from "../widgets/Login";
+import Login from "../widgets/shared/Login";
 
 const styles = StyleSheet.create({
   container: {
@@ -20,13 +20,15 @@ const styles = StyleSheet.create({
   },
 });
 
-const Site = () => {
+const Site = ({ route }) => {
+  const { site } = route.params;
   const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
       <Login mensaje="Apretar para LogIn" />
       <Text style={styles.title} onPress={() => navigation.goBack()}>
-        Title
+        {site}
       </Text>
       <Text style={styles.location}>Location</Text>
     </View>

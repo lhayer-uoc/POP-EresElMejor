@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import Login from "../widgets/Login";
-import Menu from "../widgets/Menu";
+import Login from "../widgets/shared/Login";
+import Menu from "../widgets/shared/Menu";
 
 const styles = StyleSheet.create({
   container: {
