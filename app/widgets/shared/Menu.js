@@ -77,7 +77,6 @@ const Menu = () => {
   };
 
   const handleNavigation = (screen, data = {}) => {
-    console.log("data: ", data);
     navigation.navigate(screen, { ...data });
   };
 
