@@ -10,12 +10,13 @@ const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 export default function CircleProgressBar({
 	percentage = 75,
 	radius = 40,
-	strokeWidth = 10,
+	strokeWidth = 6,
 	duration = 500,
-	color = 'tomato',
+	color = '#000000',
 	delay = 0,
 	textColor,
 	max = 100,
+	unit = '%',
 }) {
 	const circleProgressBarStyles = getCircleProgressBarStyles(
 		radius,
@@ -53,7 +54,7 @@ export default function CircleProgressBar({
 
 			if (inputRef?.current) {
 				inputRef.current.setNativeProps({
-					text: `${Math.round(v.value)}`,
+					text: `${Math.round(v.value)}${unit}`,
 				});
 			}
 		});

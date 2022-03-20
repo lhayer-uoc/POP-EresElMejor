@@ -1,8 +1,7 @@
 import React from 'react';
-import { Text } from 'react-native';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import Container from '../../widgets/shared/Container/Container';
-import CircleProgressBar from '../../widgets/shared/CircleProgressBar/CircleProgressBar';
+import LastChallengeCard from '../../widgets/home/LastChallengeCard/LastChallengeCard';
 
 import { homeStyles } from './HomeStyles';
 
@@ -11,6 +10,7 @@ const Home = () => {
 		<Container>
 			<View>
 				<Text>¡Cargaste la home!</Text>
+				<LastChallengeCard />
 			</View>
 		</Container>
 	);
