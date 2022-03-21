@@ -17,12 +17,12 @@ const Home = () => {
 	};
 
 	return (
-		<Container style={homeStyles.container}>
+		<Container>
 			<View>
-				<View style={homeStyles.child1}>
+				<View>
 					<HomeBackground />
 				</View>
-				<View style={homeStyles.child2}>
+				<View style={homeStyles.homeWelcome}>
 					<HomeWelcome />
 				</View>
 				<LastChallengeCard />
