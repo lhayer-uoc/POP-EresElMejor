@@ -51,7 +51,11 @@ const Menu = () => {
           };
         }}
       >
-        <Tab.Screen name="Home" component={Home} />
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
         <Tab.Screen
           name="Contactar"
           component={Home}
@@ -63,14 +67,16 @@ const Menu = () => {
           name="Retos"
           component={Home}
           options={() => ({
-            tabBarIcon: ({ tintColor }) => <ChallengesIcon color={tintColor} />,
+            tabBarIcon: () => (
+              <ChallengesIcon fill="#000" width={20} height={20} />
+            ),
           })}
         />
         <Tab.Screen
           name="Crear Reto"
           component={Home}
           options={() => ({
-            tabBarIcon: ({ tintColor }) => <CreateNEwChanllengeIcon />,
+            tabBarIcon: () => <CreateNEwChanllengeIcon color="#fff" />,
             tabBarLabelStyle: {
               fontSize: 15,
               fontWeight: "bold",
@@ -82,10 +88,16 @@ const Menu = () => {
           name="Perfil"
           component={Home}
           options={() => ({
-            tabBarIcon: ({ tintColor }) => <ProfileIcon />,
+            tabBarIcon: () => <ProfileIcon />,
           })}
         />
-        <Tab.Screen name="Nuevo Reto" component={Home} />
+        <Tab.Screen
+          name="Nuevo Reto"
+          component={Home}
+          options={() => ({
+            tabBarIcon: () => <PlusIcon fill="#000" width={20} height={20} />,
+          })}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
