@@ -5,7 +5,10 @@ export const menuStyles = StyleSheet.create({
     borderRadius: 50,
     backgroundColor: "black",
     padding: 18,
-    transform: [{ translateY: -20 }],
+    transform: [{ translate: [-25, -50] }],
     marginBottom: 2,
+    position: "absolute",
+    top: 0,
+    left: "-50%",
   },
 });

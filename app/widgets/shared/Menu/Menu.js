@@ -9,13 +9,19 @@ import PlusIcon from "../../../../assets/plus.svg";
 import ChallengesIcon from "../../../../assets/rocket.svg";
 import { View } from "react-native";
 import { menuStyles } from "./MenuStyles";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Tab = createBottomTabNavigator();
 
-const CreateNEwChanllengeIcon = ({ color }) => {
+const CreateNEwChanllengeIcon = ({ color, navigation }) => {
   return (
-    <View style={menuStyles.createChallenge}>
-      <PlusIcon fill={color} />
+    <View>
+      <TouchableOpacity
+        style={menuStyles.createChallenge}
+        onPress={() => navigation.navigate("Nuevo Reto Center")}
+      >
+        <PlusIcon fill={color} />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -24,13 +30,29 @@ const Menu = () => {
   const homeScreenTabs = ["Contactar", "Nuevo Reto Center", "Perfil"];
   const commonScreenTabs = ["Contactar", "Retos", "Perfil", "Nuevo Reto"];
 
+  const commonTabBarITemStyles = {
+    paddingTop: 8,
+    paddingBottom: 10,
+  };
+
+  const commonTabBarLabelStyle = {
+    fontWeight: "bold",
+    fontSize: 12,
+    color: "black",
+  };
+
   return (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={({ route, navigation }) => {
           const currentScreen = getCurrentScreen(navigation);
+
           return {
+            tabBarStyle: {
+              height: 65,
+            },
+            tabBarActiveBackgroundColor: "#fc0",
             tabBarButton:
               (currentScreen === "Home" &&
                 !homeScreenTabs.includes(route.name)) ||
@@ -38,16 +60,8 @@ const Menu = () => {
                 !commonScreenTabs.includes(route.name))
                 ? () => null
                 : undefined,
-            tabBarLabelStyle: {
-              fontWeight: "bold",
-              fontSize: 12,
-              color: "black",
-            },
-            tabBarStyle: {
-              paddingTop: 8,
-              paddingBottom: 10,
-              height: 65,
-            },
+            tabBarLabelStyle: commonTabBarLabelStyle,
+            tabBarItemStyle: commonTabBarITemStyles,
           };
         }}
       >
@@ -60,7 +74,7 @@ const Menu = () => {
           name="Contactar"
           component={Home}
           options={() => ({
-            tabBarIcon: ({ tintColor }) => <ContactIcon />,
+            tabBarIcon: () => <ContactIcon />,
           })}
         />
         <Tab.Screen
@@ -75,10 +89,13 @@ const Menu = () => {
         <Tab.Screen
           name="Nuevo Reto Center"
           component={Home}
-          options={() => ({
+          options={({ navigation }) => ({
             title: "Nuevo Reto",
-            tabBarIcon: () => <CreateNEwChanllengeIcon color="#fff" />,
+            tabBarIcon: () => (
+              <CreateNEwChanllengeIcon color="#fff" navigation={navigation} />
+            ),
             tabBarLabelStyle: {
+              ...commonTabBarLabelStyle,
               fontSize: 15,
               fontWeight: "bold",
               color: "black",
@@ -95,10 +112,21 @@ const Menu = () => {
         <Tab.Screen
           name="Nuevo Reto"
           component={Home}
-          options={() => ({
-            title: "Nuevo Reto",
-            tabBarIcon: () => <PlusIcon fill="#000" width={20} height={20} />,
-          })}
+          options={({ route, navigation }) => {
+            const currentScreen = getCurrentScreen(navigation);
+            const indexNavigation = navigation.getState().index;
+            return {
+              title: "Nuevo Reto",
+              tabBarIcon: () => <PlusIcon fill="#000" width={20} height={20} />,
+              tabBarItemStyle: {
+                ...commonTabBarITemStyles,
+                backgroundColor:
+                  indexNavigation === 3 || currentScreen === "Nuevo Reto"
+                    ? "#fc0"
+                    : "#fff",
+              },
+            };
+          }}
         />
       </Tab.Navigator>
     </NavigationContainer>
