@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
 	heading2: {
 		fontSize: 16,
 		fontWeight: 'bold',
+		textTransform: 'capitalize',
 	},
 	description: {
 		fontSize: 14,
