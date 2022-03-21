@@ -21,7 +21,7 @@ const CreateNEwChanllengeIcon = ({ color }) => {
 };
 
 const Menu = () => {
-  const homeScreenTabs = ["Contactar", "Crear Reto", "Perfil"];
+  const homeScreenTabs = ["Contactar", "Nuevo Reto Center", "Perfil"];
   const commonScreenTabs = ["Contactar", "Retos", "Perfil", "Nuevo Reto"];
 
   return (
@@ -73,9 +73,10 @@ const Menu = () => {
           })}
         />
         <Tab.Screen
-          name="Crear Reto"
+          name="Nuevo Reto Center"
           component={Home}
           options={() => ({
+            title: "Nuevo Reto",
             tabBarIcon: () => <CreateNEwChanllengeIcon color="#fff" />,
             tabBarLabelStyle: {
               fontSize: 15,
@@ -95,6 +96,7 @@ const Menu = () => {
           name="Nuevo Reto"
           component={Home}
           options={() => ({
+            title: "Nuevo Reto",
             tabBarIcon: () => <PlusIcon fill="#000" width={20} height={20} />,
           })}
         />
