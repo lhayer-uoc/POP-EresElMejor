@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 
 import Container from '../../widgets/shared/Container/Container';
 import { HomeWelcome } from '../../widgets/home/HomeWelcome/HomeWelcome';
@@ -19,17 +19,15 @@ const Home = () => {
 	return (
 		<Container>
 			<View>
-				<View>
-					<HomeBackground />
-				</View>
-				<View style={homeStyles.homeWelcome}>
-					<HomeWelcome />
-				</View>
-				<LastChallengeCard />
-				<CustomButton title={'Ver todos tus retos'} action={showAlert}>
-					<RocketSvg width="16" height="16" fill="#FFF" />
-				</CustomButton>
+				<HomeBackground />
 			</View>
+			<View style={homeStyles.homeWelcome}>
+				<HomeWelcome />
+			</View>
+			<LastChallengeCard />
+			<CustomButton title={'Ver todos tus retos'} action={showAlert}>
+				<RocketSvg width="16" height="16" fill="#FFF" />
+			</CustomButton>
 		</Container>
 	);
 };

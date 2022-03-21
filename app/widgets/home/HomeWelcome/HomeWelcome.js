@@ -18,7 +18,7 @@ export const HomeWelcome = () => {
 	};
 
 	return (
-		<View styles={styleHomeWelcome.container}>
+		<View>
 			<Avatar
 				rounded
 				size={100}
