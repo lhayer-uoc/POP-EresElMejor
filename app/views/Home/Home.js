@@ -1,24 +1,37 @@
 import React from 'react';
-import { Text } from "react-native";
-import { View } from "react-native";
-import Container from "../../widgets/shared/Container/Container";
+import { View, Text, Alert } from 'react-native';
 
-import { HomeWelcome } from "../../widgets/home/HomeWelcome/HomeWelcome";
-import { homeStyles } from "./HomeStyles";
-import { HomeBackground } from "../../widgets/home/HomeBackground/HomeBackground";
+import Container from '../../widgets/shared/Container/Container';
+import { HomeWelcome } from '../../widgets/home/HomeWelcome/HomeWelcome';
+import { HomeBackground } from '../../widgets/home/HomeBackground/HomeBackground';
+import CustomButton from '../../widgets/shared/Button/CustomButton';
+import LastChallengeCard from '../../widgets/home/LastChallengeCard/LastChallengeCard';
 
+import RocketSvg from '../../../assets/rocket.svg';
+
+import { homeStyles } from './HomeStyles';
 
 const Home = () => {
-  return (
-    <Container style={homeStyles.container}>         
-      <View  style={homeStyles.child1}>
-        <HomeBackground/>
-      </View>
-      <View  style={homeStyles.child2}>
-        <HomeWelcome/>
-      </View>
-    </Container>
-  );
+	const showAlert = () => {
+		Alert.alert('Botón pulsado', 'Has pulsado el botón ...');
+	};
+
+	return (
+		<Container style={homeStyles.container}>
+			<View>
+				<View style={homeStyles.child1}>
+					<HomeBackground />
+				</View>
+				<View style={homeStyles.child2}>
+					<HomeWelcome />
+				</View>
+				<LastChallengeCard />
+				<CustomButton title={'Ver todos tus retos'} action={showAlert}>
+					<RocketSvg width="16" height="16" fill="#FFF" />
+				</CustomButton>
+			</View>
+		</Container>
+	);
 };
 
 export default Home;
