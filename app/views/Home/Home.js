@@ -20,7 +20,7 @@ const Home = () => {
 				<Text>¡Cargaste la home!</Text>
 				<LastChallengeCard />
 				<CustomButton title={'Ver todos tus retos'} action={showAlert}>
-					<RocketSvg width="16" height="16" />
+					<RocketSvg width="16" height="16" fill="#FFF" />
 				</CustomButton>
 			</View>
 		</Container>
