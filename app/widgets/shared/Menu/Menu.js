@@ -112,7 +112,7 @@ const Menu = () => {
         <Tab.Screen
           name="Nuevo Reto"
           component={Home}
-          options={({ route, navigation }) => {
+          options={({ navigation }) => {
             const currentScreen = getCurrentScreen(navigation);
             const indexNavigation = navigation.getState().index;
             return {
