@@ -1,5 +1,7 @@
 import React from "react";
 import { View, Alert } from "react-native";
+import { HomeWelcome } from "../../widgets/home/HomeWelcome/HomeWelcome";
+import { HomeBackground } from "../../widgets/home/HomeBackground/HomeBackground";
 
 import Container from "../../widgets/shared/Container/Container";
 import CustomButton from "../../widgets/shared/Button/CustomButton";
@@ -16,6 +18,12 @@ const Home = () => {
   return (
     <Container>
       <View style={homeStyles.screenContainer}>
+        <View style={homeStyles.backgroundBlock}>
+          <HomeBackground />
+          <View style={homeStyles.wellcomeMessage}>
+            <HomeWelcome />
+          </View>
+        </View>
         <View style={homeStyles.lastChallengeBlock}>
           <LastChallengeCard />
           <CustomButton title={"Ver todos tus retos"} action={showAlert}>

@@ -4,7 +4,7 @@ import Menu from "./app/widgets/shared/Menu/Menu";
 
 function App() {
   return (
-    <SafeAreaProvider mode="padding">
+    <SafeAreaProvider>
       <Menu />
     </SafeAreaProvider>
   );
