@@ -1,3 +1,7 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-export const homeStyles = StyleSheet.create({});
+export const homeStyles = StyleSheet.create({
+	homeWelcome: {
+		bottom: 95,
+	},
+});

@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Alert } from 'react-native';
 
 import Container from '../../widgets/shared/Container/Container';
+import { HomeWelcome } from '../../widgets/home/HomeWelcome/HomeWelcome';
+import { HomeBackground } from '../../widgets/home/HomeBackground/HomeBackground';
 import CustomButton from '../../widgets/shared/Button/CustomButton';
 import LastChallengeCard from '../../widgets/home/LastChallengeCard/LastChallengeCard';
 
@@ -17,12 +19,15 @@ const Home = () => {
 	return (
 		<Container>
 			<View>
-				<Text>¡Cargaste la home!</Text>
-				<LastChallengeCard />
-				<CustomButton title={'Ver todos tus retos'} action={showAlert}>
-					<RocketSvg width="16" height="16" fill="#FFF" />
-				</CustomButton>
+				<HomeBackground />
 			</View>
+			<View style={homeStyles.homeWelcome}>
+				<HomeWelcome />
+			</View>
+			<LastChallengeCard />
+			<CustomButton title={'Ver todos tus retos'} action={showAlert}>
+				<RocketSvg width="16" height="16" fill="#FFF" />
+			</CustomButton>
 		</Container>
 	);
 };
