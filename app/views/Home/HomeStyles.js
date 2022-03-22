@@ -12,7 +12,7 @@ export const homeStyles = StyleSheet.create({
   lastChallengeBlock: {
     marginTop: "auto",
   },
-  backgroundBlock: {
+  wellcomeBlock: {
     height: "40%",
     backgroundColor: "yellow",
   },

@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <Container>
       <View style={homeStyles.screenContainer}>
-        <View style={homeStyles.backgroundBlock}>
+        <View style={homeStyles.wellcomeBlock}>
           <HomeBackground />
           <View style={homeStyles.wellcomeMessage}>
             <HomeWelcome />
