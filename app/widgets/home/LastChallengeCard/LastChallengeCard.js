@@ -3,9 +3,9 @@ import { TouchableOpacity, Alert } from "react-native";
 
 import { styles } from "./LastChallengeCardStyles";
 
-import CircleProgressBar from "../../../widgets/shared/CircleProgressBar/CircleProgressBar";
-import HeadingTextBlock from "../../../widgets/shared/HeadingTextBlock/HeadingTextBlock";
-import SVGImg from "../../../../assets/right-arrow.svg";
+import CircleProgressBar from "app/widgets/shared/CircleProgressBar/CircleProgressBar";
+import HeadingTextBlock from "app/widgets/shared/HeadingTextBlock/HeadingTextBlock";
+import SVGImg from "assets/right-arrow.svg";
 
 const LastChallengeCard = () => {
   return (

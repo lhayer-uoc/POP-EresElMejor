@@ -16,7 +16,7 @@ const Home = () => {
   };
 
   return (
-    <Container negativeSpacing={false}>
+    <Container negativeSpacing={true}>
       <View style={homeStyles.screenContainer}>
         <View style={homeStyles.wellcomeBlock}>
           <HomeBackground />

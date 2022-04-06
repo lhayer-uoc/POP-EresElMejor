@@ -5,15 +5,6 @@ import { StyleSheet } from "react-native";
 import BackArrow from "assets/backArrow.svg";
 
 export const headerStyles = StyleSheet.create({
-  container: {
-    backgroundColor: "#FC0",
-    height: 60,
-    padding: 10,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   backButton: {
     width: 50,
     marginLeft: 20,
