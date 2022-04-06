@@ -1,15 +1,17 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../../../views/Home/Home";
-import { getCurrentScreen } from "../../../utils/navigation";
-import ContactIcon from "../../../../assets/contact.svg";
-import ProfileIcon from "../../../../assets/profile.svg";
-import PlusIcon from "../../../../assets/plus.svg";
-import ChallengesIcon from "../../../../assets/rocket.svg";
 import { View } from "react-native";
-import { menuStyles } from "./MenuStyles";
+import { getCurrentScreen } from "app/utils/navigation";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { commonHeader } from "app/utils/commonHeader";
+import Home from "app/views/Home/Home";
+import ContactIcon from "assets/contact.svg";
+import ProfileIcon from "assets/profile.svg";
+import PlusIcon from "assets/plus.svg";
+import ChallengesIcon from "assets/rocket.svg";
+import { menuStyles } from "./MenuStyles";
+import Contact from "app/views/Contact/Contact";
 
 const Tab = createBottomTabNavigator();
 
@@ -72,24 +74,26 @@ const Menu = () => {
         />
         <Tab.Screen
           name="Contactar"
-          component={Home}
-          options={() => ({
+          component={Contact}
+          options={({ navigation, route }) => ({
             tabBarIcon: () => <ContactIcon />,
+            ...commonHeader(navigation, route),
           })}
         />
         <Tab.Screen
           name="Retos"
           component={Home}
-          options={() => ({
+          options={({ navigation, route }) => ({
             tabBarIcon: () => (
               <ChallengesIcon fill="#000" width={20} height={20} />
             ),
+            ...commonHeader(navigation, route),
           })}
         />
         <Tab.Screen
           name="Nuevo Reto Center"
           component={Home}
-          options={({ navigation }) => ({
+          options={({ navigation, route }) => ({
             title: "Nuevo Reto",
             tabBarIcon: () => (
               <CreateNewChallengeIcon color="#fff" navigation={navigation} />
@@ -100,19 +104,21 @@ const Menu = () => {
               fontWeight: "bold",
               color: "black",
             },
+            ...commonHeader(navigation, route),
           })}
         />
         <Tab.Screen
           name="Perfil"
           component={Home}
-          options={() => ({
+          options={({ navigation, route }) => ({
             tabBarIcon: () => <ProfileIcon />,
+            ...commonHeader(navigation, route),
           })}
         />
         <Tab.Screen
           name="Nuevo Reto"
           component={Home}
-          options={({ navigation }) => {
+          options={({ navigation, route }) => {
             const currentScreen = getCurrentScreen(navigation);
             const indexNavigation = navigation.getState().index;
             return {
@@ -125,6 +131,7 @@ const Menu = () => {
                     ? "#fc0"
                     : "#fff",
               },
+              ...commonHeader(navigation, route),
             };
           }}
         />
