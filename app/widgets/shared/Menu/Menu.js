@@ -13,6 +13,7 @@ import ChallengesIcon from "assets/rocket.svg";
 import { menuStyles } from "./MenuStyles";
 import Contact from "app/views/Contact/Contact";
 
+
 const Tab = createBottomTabNavigator();
 
 const CreateNewChallengeIcon = ({ color, navigation }) => {
