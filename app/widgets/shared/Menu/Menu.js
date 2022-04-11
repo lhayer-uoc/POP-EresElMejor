@@ -48,10 +48,11 @@ const Menu = () => {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
-        screenOptions={({ route, navigation }) => {
+        screenOptions={({ route, navigation}) => {
           const currentScreen = getCurrentScreen(navigation);
 
           return {
+            tabBarHideOnKeyboard: true,
             tabBarStyle: {
               height: 65,
             },
@@ -65,7 +66,7 @@ const Menu = () => {
                 : undefined,
             tabBarLabelStyle: commonTabBarLabelStyle,
             tabBarItemStyle: commonTabBarITemStyles,
-          };
+          };          
         }}
       >
         <Tab.Screen
