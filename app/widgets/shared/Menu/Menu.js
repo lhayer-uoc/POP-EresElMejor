@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View } from "react-native";
 import { getCurrentScreen } from "app/utils/navigation";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -16,10 +15,9 @@ import ChallengesIcon from "assets/rocket.svg";
 import { menuStyles } from "./MenuStyles";
 import Contact from "app/views/Contact/Contact";
 import { getCurrentScreenKey } from "../../../utils/navigation";
+import NewChallenge from "../../../views/NewChallenge/NewChallenge";
 
 const Tab = createBottomTabNavigator();
-
-const Stack = createNativeStackNavigator();
 
 const CreateNewChallengeIcon = ({ color, navigation }) => {
   return (
@@ -140,7 +138,7 @@ const Menu = () => {
         />
         <Tab.Screen
           name="Nuevo Reto Center"
-          component={Home}
+          component={NewChallenge}
           options={({ navigation, route }) => ({
             title: "Nuevo Reto",
             tabBarIcon: () => (
@@ -165,7 +163,7 @@ const Menu = () => {
         />
         <Tab.Screen
           name="Nuevo Reto"
-          component={Home}
+          component={NewChallenge}
           options={({ navigation, route }) => {
             const currentScreen = getCurrentScreen(navigation);
             const indexNavigation = navigation.getState().index;
