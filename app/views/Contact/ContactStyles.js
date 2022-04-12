@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const contactStyles = StyleSheet.create({
-  container: {
+  view: {
     marginVertical: '30%',
     flex:1,
     width:400,
@@ -31,9 +31,5 @@ export const contactStyles = StyleSheet.create({
     width: '50%',
     height: 55
 
-  },
-  textButton:{
-    color: 'white',
-    fontSize: 20,
   }
 });
