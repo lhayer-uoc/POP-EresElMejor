@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { Avatar } from "react-native-elements";
 
-import { loadImageFromGallery } from "app/utils/imageUtil";
+import { loadImageFromGallery } from "../../../utils/imageUtil";
 
 import { styleHomeWelcome } from "./HomeWelcomeStyles";
 
