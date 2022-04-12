@@ -40,11 +40,13 @@ const Item = ({ item, onPress, backgroundColor }) => {
 	);
 };
 
-const ChallengeList = () => {
+const ChallengeList = props => {
 	const [selectedId, setSelectedId] = useState(null);
 
-	const onSelectItem = id => {
-		setSelectedId(id);
+	const onSelectItem = item => {
+		setSelectedId(item.id);
+
+		props.navigation.navigate('Reto', { itemId: item.id, item });
 	};
 
 	const renderItem = ({ item }) => {
@@ -54,7 +56,7 @@ const ChallengeList = () => {
 		return (
 			<Item
 				item={item}
-				onPress={() => onSelectItem(item.id)}
+				onPress={() => onSelectItem(item)}
 				backgroundColor={{ backgroundColor }}
 				textColor={{ color }}
 			/>
