@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { TouchableOpacity, View, Image } from "react-native";
-import { loadImageFromGallery } from "../../../utils/imageUtil";
+import { loadImageFromGallery } from "app/utils/imageUtil";
 import { stylesHomeBackground } from "./HomeBackgrounStyles";
-import PlusIcon from "../../../../assets/plus.svg";
+import PlusIcon from "assets/plus.svg";
 
 export const HomeBackground = () => {
   const [image, setImage] = useState();
