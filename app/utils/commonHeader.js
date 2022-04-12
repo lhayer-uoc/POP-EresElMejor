@@ -18,12 +18,12 @@ export const headerStyles = StyleSheet.create({
   },
 });
 
-export const commonHeader = (navigation, route) => {
+export const commonHeader = (navigation, route, backScreen = "Home") => {
   return {
     headerTitle: () => <Text style={headerStyles.title}>{route.name}</Text>,
     headerLeft: () => (
       <TouchableOpacity
-        onPress={() => navigation.goBack()}
+        onPress={() => navigation.navigate(backScreen)}
         style={headerStyles.backButton}
       >
         <BackArrow fill="#000" />
