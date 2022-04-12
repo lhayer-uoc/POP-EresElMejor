@@ -16,7 +16,7 @@ export const contactStyles = StyleSheet.create({
     borderRadius: 10,
     borderColor: 'rgba(0,0,0,0.3)',
   },
-  textInput:{
+  text:{
     fontSize: 15,
     height: 25,
     marginHorizontal:35,
