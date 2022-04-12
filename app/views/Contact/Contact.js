@@ -74,28 +74,3 @@ const sendEmail = useCallback (async ( to, subject, body, options = {} ) => {
 export default Contact;
 
 
-//FUNCION PARA MANDAR EMAIL
-async function sendEmail( to, subject, body, options = {} ){
-  const {cc, bcc}=options;
-  let url = `mailto:${to}`;
-
-  const query = qs.stringify({
-    to:to,
-    subject: subject,
-    body:body,
-    cc: cc,
-    bcc: bcc
-  })
-  
-  if (query.length){
-    url += `?${query}`;
-  }
-
-//comprobar si funciona el link
-const canOpen = await Linking.canOpenURL(url);
-if(!canOpen){
-  throw new Error('Provider URL can not be handled');
-}
-return Linking.openURL(url);
-}
-
