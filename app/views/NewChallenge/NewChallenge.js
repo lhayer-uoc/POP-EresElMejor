@@ -1,32 +1,42 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import React from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
 
+import { newChallengeStyles } from "./NewChallengeStyles";
+import { HomeBackground } from "../../widgets/home/HomeBackground/HomeBackground";
 
-import {newChallengeStyles} from './NewChallengeStyles';
-
- 
 const NewChallenge = () => {
-  
-      return (
-      
-        <View style={newChallengeStyles.view}>
-            <Text style={newChallengeStyles.text}>Nuevo Reto</Text>
-            
-            <Text style={newChallengeStyles.textInput} >Introduce el nombre del reto</Text>
-            <TextInput 
-            style={newChallengeStyles.input}
-            
-            />
-            <Text style={newChallengeStyles.textInput} > Introduce una descripcion</Text>
-            <TextInput 
-            style={newChallengeStyles.input} 
-            />     
-           <TouchableOpacity style={newChallengeStyles.button}>
-             <Text style={newChallengeStyles.textButton}> Guardar reto</Text>
-           </TouchableOpacity>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View>
+        <View style={newChallengeStyles.image}>
+          <HomeBackground />
         </View>
-      
-    
-  )
-}
+        <View>
+          <TextInput
+            style={newChallengeStyles.input}
+            placeholder="Nombre del reto"
+          />
+
+          <TextInput style={newChallengeStyles.input} placeholder="Detalle" />
+          <TextInput style={newChallengeStyles.input} placeholder="Categoria" />
+          <TextInput style={newChallengeStyles.input} placeholder="Tiempo" />
+          <TextInput
+            style={newChallengeStyles.input}
+            placeholder="Periodicidad"
+          />
+          <TouchableOpacity style={newChallengeStyles.button}>
+            <Text style={newChallengeStyles.textButton}> Guardar reto</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
 export default NewChallenge;
