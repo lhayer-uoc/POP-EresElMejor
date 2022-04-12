@@ -13,6 +13,7 @@ import ChallengesIcon from "assets/rocket.svg";
 import { menuStyles } from "./MenuStyles";
 import Contact from "app/views/Contact/Contact";
 
+
 const Tab = createBottomTabNavigator();
 
 const CreateNewChallengeIcon = ({ color, navigation }) => {
@@ -47,10 +48,11 @@ const Menu = () => {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
-        screenOptions={({ route, navigation }) => {
+        screenOptions={({ route, navigation}) => {
           const currentScreen = getCurrentScreen(navigation);
 
           return {
+            tabBarHideOnKeyboard: true,
             tabBarStyle: {
               height: 65,
             },
@@ -64,7 +66,7 @@ const Menu = () => {
                 : undefined,
             tabBarLabelStyle: commonTabBarLabelStyle,
             tabBarItemStyle: commonTabBarITemStyles,
-          };
+          };          
         }}
       >
         <Tab.Screen
