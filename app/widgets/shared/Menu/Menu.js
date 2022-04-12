@@ -1,12 +1,14 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View } from 'react-native';
 import { getCurrentScreen } from 'app/utils/navigation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { commonHeader } from 'app/utils/commonHeader';
 import Home from 'app/views/Home/Home';
 import ChallengeList from 'app/views/ChallengeList/ChallengeList';
+import ChallengeDetail from 'app/views/ChallengeDetail/ChallengeDetail';
 import ContactIcon from 'assets/contact.svg';
 import ProfileIcon from 'assets/profile.svg';
 import PlusIcon from 'assets/plus.svg';
@@ -16,6 +18,8 @@ import Contact from 'app/views/Contact/Contact';
 
 
 const Tab = createBottomTabNavigator();
+
+const Stack = createNativeStackNavigator();
 
 const CreateNewChallengeIcon = ({ color, navigation }) => {
 	return (
@@ -146,6 +150,16 @@ const Menu = () => {
 										? '#fc0'
 										: '#fff',
 							},
+							...commonHeader(navigation, route),
+						};
+					}}
+				/>
+				<Stack.Screen
+					name="Reto"
+					component={ChallengeDetail}
+					options={({ navigation, route }) => {
+						return {
+							title: 'Reto',
 							...commonHeader(navigation, route),
 						};
 					}}
