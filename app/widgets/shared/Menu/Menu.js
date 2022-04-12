@@ -57,6 +57,7 @@ const Menu = () => {
 					const currentScreen = getCurrentScreen(navigation);
 
 					return {
+						tabBarHideOnKeyboard:true,
 						tabBarStyle: {
 							height: 65,
 						},
@@ -112,6 +113,7 @@ const Menu = () => {
 					name="Nuevo Reto Center"
 					component={NewChallenge}
 					options={({ navigation, route }) => ({
+						
 						title: 'Nuevo Reto',
 						tabBarIcon: () => (
 							<CreateNewChallengeIcon color="#fff" navigation={navigation} />

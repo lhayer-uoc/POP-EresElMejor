@@ -7,6 +7,10 @@ export const newChallengeStyles = StyleSheet.create({
       width:400,
       height:200,
     },
+    image:{
+      width:"100%",
+      height: "35%"
+    },
     input:{
         borderWidth:2,
         marginVertical:5,
@@ -15,6 +19,7 @@ export const newChallengeStyles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 10,
         borderColor: 'rgba(0,0,0,0.3)',
+        marginVertical:10
       },
       text:{
         alignSelf: 'center',

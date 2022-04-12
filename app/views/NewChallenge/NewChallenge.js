@@ -3,27 +3,44 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 
 
 import {newChallengeStyles} from './NewChallengeStyles';
+import { HomeBackground } from '../../widgets/home/HomeBackground/HomeBackground';
 
- 
 const NewChallenge = () => {
   
       return (
       
-        <View style={newChallengeStyles.view}>
-            <Text style={newChallengeStyles.text}>Nuevo Reto</Text>
+        <View>
+            <View style={newChallengeStyles.image}>
+             <HomeBackground/>
+            </View>
+            <View>
             
-            <Text style={newChallengeStyles.textInput} >Introduce el nombre del reto</Text>
             <TextInput 
             style={newChallengeStyles.input}
-            
+            placeholder="Nombre del reto"
             />
-            <Text style={newChallengeStyles.textInput} > Introduce una descripcion</Text>
+
             <TextInput 
             style={newChallengeStyles.input} 
+            placeholder="Detalle"
+            />  
+            <TextInput 
+            style={newChallengeStyles.input} 
+            placeholder="Categoria"
+            />  
+            <TextInput 
+            style={newChallengeStyles.input} 
+            placeholder="Tiempo"
+            />   
+            <TextInput 
+            style={newChallengeStyles.input} 
+            placeholder="Periodicidad"
             />     
            <TouchableOpacity style={newChallengeStyles.button}>
              <Text style={newChallengeStyles.textButton}> Guardar reto</Text>
            </TouchableOpacity>
+            </View>
+            
         </View>
       
     
