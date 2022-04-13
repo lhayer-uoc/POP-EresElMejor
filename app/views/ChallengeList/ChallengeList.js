@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "widgets/shared/Container/Container";
 import { View, TouchableOpacity, Text } from "react-native";
 

@@ -1,7 +1,8 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { getCurrentScreen } from "app/utils/navigation";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { commonHeader } from "app/utils/commonHeader";
@@ -16,25 +17,63 @@ import { menuStyles } from "./MenuStyles";
 import Contact from "app/views/Contact/Contact";
 import NewChallenge from "../../../views/NewChallenge/NewChallenge";
 import Profile from "../../../views/Profile/Profile";
+import { headerStyles } from "../../../utils/commonHeader";
 
 const Tab = createBottomTabNavigator();
+const ChallengeStack = createNativeStackNavigator();
 
-const CreateNewChallengeIcon = ({ color, navigation }) => {
+// Retos Stack
+const ChallengeNavigation = () => {
   return (
-    <View>
-      <TouchableOpacity
-        style={menuStyles.createChallenge}
-        onPress={() => navigation.navigate("Nuevo Reto Center")}
-      >
-        <PlusIcon fill={color} />
-      </TouchableOpacity>
-    </View>
+    <ChallengeStack.Navigator
+      screenOptions={() => ({
+        headerBackVisible: false,
+      })}
+    >
+      <ChallengeStack.Screen
+        name="Retos"
+        component={ChallengeList}
+        options={({ navigation, route }) => {
+          return {
+            title: "Retos",
+            ...commonHeader(navigation, route),
+          };
+        }}
+      />
+      <ChallengeStack.Screen
+        name="Reto"
+        component={ChallengeDetail}
+        options={({ navigation, route }) => {
+          return {
+            ...commonHeader(navigation, route),
+            headerTitle: () => (
+              <Text style={headerStyles.title}>
+                {route?.params?.item?.title}
+              </Text>
+            ),
+          };
+        }}
+      />
+    </ChallengeStack.Navigator>
   );
 };
 
 const Menu = () => {
   const homeScreenTabs = ["Contactar", "Nuevo Reto Center", "Perfil"];
-  const commonScreenTabs = ["Contactar", "Retos", "Perfil", "Nuevo Reto"];
+  const commonScreenTabs = ["Contactar", "Retos Tab", "Perfil", "Nuevo Reto"];
+
+  const CreateNewChallengeIcon = ({ color, navigation }) => {
+    return (
+      <View>
+        <TouchableOpacity
+          style={menuStyles.createChallenge}
+          onPress={() => navigation.navigate("Nuevo Reto Center")}
+        >
+          <PlusIcon fill={color} />
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
   const commonTabBarITemStyles = {
     paddingTop: 8,
@@ -87,15 +126,16 @@ const Menu = () => {
           })}
         />
         <Tab.Screen
-          name="Retos"
-          component={ChallengeList}
-          options={({ navigation, route }) => {
+          name="Retos Tab"
+          component={ChallengeNavigation}
+          initialRouteName="Retos"
+          options={() => {
             return {
               title: "Retos",
               tabBarIcon: () => (
                 <ChallengesIcon fill="#000" width={20} height={20} />
               ),
-              ...commonHeader(navigation, route),
+              headerShown: false,
             };
           }}
         />
@@ -141,22 +181,6 @@ const Menu = () => {
                     : "#fff",
               },
               ...commonHeader(navigation, route),
-            };
-          }}
-        />
-        <Tab.Screen
-          name="Reto"
-          component={ChallengeDetail}
-          options={({ navigation, route }) => {
-            const currentScreen = getCurrentScreen(navigation);
-            return {
-              title: "Reto",
-              tabBarItemStyle: {
-                ...commonTabBarITemStyles,
-                backgroundColor:
-                  currentScreen === "Nuevo Reto" ? "#fc0" : "#fff",
-              },
-              ...commonHeader(navigation, route, "Retos"),
             };
           }}
         />
