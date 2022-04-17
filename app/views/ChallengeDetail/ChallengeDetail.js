@@ -8,7 +8,6 @@ import Container from "widgets/shared/Container/Container";
 
 const ChallengeDetail = (props) => {
   const { item } = props.route.params;
-
   return (
     <Container>
       <View style={challengeDetailStyles.container}>
