@@ -12,9 +12,13 @@ import { homeStyles } from "./HomeStyles";
 import { useState } from "react";
 import { useEffect } from "react";
 import { getLastChallengeService } from "../../services/getLastChallengeService";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigation } from "@react-navigation/native";
 
 const Home = (props) => {
   const [lastChallenge, setLastChallenge] = useState(null);
+  const { authState } = useAuth();
+  const navigation = useNavigation();
 
   const navigateToChallengeList = () => {
     props.navigation.navigate("Retos");
@@ -32,8 +36,9 @@ const Home = (props) => {
   };
 
   useEffect(() => {
+    console.log("navigation: ", navigation.getState().history);
     handleLastChallenge();
-  }, []);
+  }, [navigation]);
 
   return (
     <Container negativeSpacing={true}>
