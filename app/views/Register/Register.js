@@ -1,22 +1,34 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useState } from "react";
 import Container from "widgets/shared/Container/Container";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import CustomButton from "app/widgets/shared/Button/CustomButton";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { useForm } from "../../hooks/useForm";
 import { emailValidation, emptyField } from "../../utils/formValidations";
-import PersonCircle from "assets/person-circle.svg";
-import { loginStyles } from "./LoginStyles";
+import { loadImageFromGallery } from "app/utils/imageUtil";
+import { registerStyles } from "./RegisterStyles";
+import { Avatar } from "react-native-elements";
 
-const Login = () => {
+const Register = () => {
   const navigation = useNavigation();
-  const { email, password, onChange, onBlur, validForm } = useForm({
+  const [image, setImage] = useState();
+
+  const changeAvatar = async () => {
+    //array como parametro las dimensiones de la imagen
+    const result = await loadImageFromGallery([1, 1]);
+    setImage(result.image);
+  };
+  const { email, password, name, onChange, onBlur, validForm } = useForm({
     email: {
       value: "",
       validation: [emailValidation],
     },
     password: {
+      value: "",
+      validation: [emptyField],
+    },
+    name: {
       value: "",
       validation: [emptyField],
     },
@@ -28,16 +40,27 @@ const Login = () => {
   };
 
   return (
-    <Container style={loginStyles.container} negativeSpacing={false}>
-      <View style={loginStyles.view}>
-        <View>
-          <PersonCircle
-            color="#000"
-            width={80}
-            height={80}
-            style={loginStyles.userIcon}
+    <Container style={registerStyles.container} negativeSpacing={false}>
+      <View style={registerStyles.view}>
+        <View style={registerStyles.avatarWrapper}>
+          <Avatar
+            rounded
+            size={100}
+            containerStyle={registerStyles.avatar}
+            source={{ uri: image }}
+            onPress={changeAvatar}
           />
+          <Text style={registerStyles.avatarLabel}>Añadir Foto</Text>
         </View>
+        <CustomInput
+          placeholder="Escribe tu nombre"
+          label="Name"
+          value={name.value}
+          onChange={(value) => onChange(value, "name")}
+          onBlur={() => onBlur("name")}
+          error={name.errorMessage}
+          labelAlign="center"
+        />
         <CustomInput
           placeholder="Escribe tu email"
           label="Email"
@@ -57,14 +80,14 @@ const Login = () => {
           labelAlign="center"
         />
         <CustomButton
-          title={"Acceder"}
+          title={"Registrarme"}
           action={validForm ? navigateToHome : null}
           disable={!validForm}
           fullWidth
         />
         <CustomButton
-          title={"Quiero registrarme"}
-          action={() => navigation.navigate("Register")}
+          title={"Ya tengo usuario"}
+          action={() => navigation.navigate("Login")}
           fullWidth
           theme="secondary"
         />
@@ -72,4 +95,4 @@ const Login = () => {
     </Container>
   );
 };
-export default Login;
+export default Register;

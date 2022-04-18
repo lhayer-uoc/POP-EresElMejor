@@ -4,6 +4,7 @@ import { AuthProvider } from "../../../context/AuthContext";
 import Login from "../../../views/Login/Login";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MenuApp } from "./MenuApp";
+import Register from "../../../views/Register/Register";
 
 const Stack = createStackNavigator();
 
@@ -13,6 +14,11 @@ const Auth = () => {
       <Stack.Screen
         name="Login"
         component={Login}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

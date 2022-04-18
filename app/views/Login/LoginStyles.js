@@ -10,4 +10,7 @@ export const loginStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  userIcon: {
+    marginBottom: 20,
+  },
 });
