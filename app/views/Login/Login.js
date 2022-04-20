@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React from "react";
 import Container from "widgets/shared/Container/Container";
 import { View } from "react-native";
@@ -8,24 +8,32 @@ import { useForm } from "../../hooks/useForm";
 import { emailValidation, emptyField } from "../../utils/formValidations";
 import PersonCircle from "assets/person-circle.svg";
 import { loginStyles } from "./LoginStyles";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const navigation = useNavigation();
-  const { email, password, onChange, onBlur, validForm } = useForm({
-    email: {
-      value: "",
-      validation: [emailValidation],
-    },
-    password: {
-      value: "",
-      validation: [emptyField],
-    },
-  });
+  const { Login, isLoading } = useAuth();
+  const { email, password, onChange, onBlur, validForm, getFormParams, form } =
+    useForm();
 
-  const navigateToHome = () => {
-    navigation.getState();
-    navigation.replace("AppRoutes");
+  const handleLogin = async () => {
+    Login(email, password);
   };
+
+  useFocusEffect(() => {
+    if (!form) {
+      getFormParams({
+        email: {
+          value: "",
+          validation: [emailValidation],
+        },
+        password: {
+          value: "",
+          validation: [emptyField],
+        },
+      });
+    }
+  });
 
   return (
     <Container style={loginStyles.container} negativeSpacing={false}>
@@ -41,24 +49,24 @@ const Login = () => {
         <CustomInput
           placeholder="Escribe tu email"
           label="Email"
-          value={email.value}
+          value={email?.value}
           onChange={(value) => onChange(value, "email")}
           onBlur={() => onBlur("email")}
-          error={email.errorMessage}
+          error={email?.errorMessage}
           labelAlign="center"
         />
         <CustomInput
           placeholder="Escribe tu password"
           label="Password"
-          value={password.value}
+          value={password?.value}
           onChange={(value) => onChange(value, "password")}
           onBlur={() => onBlur("password")}
-          error={password.errorMessage}
+          error={password?.errorMessage}
           labelAlign="center"
         />
         <CustomButton
           title={"Acceder"}
-          action={validForm ? navigateToHome : null}
+          action={validForm ? () => handleLogin(email, password) : null}
           disable={!validForm}
           fullWidth
         />
@@ -67,6 +75,7 @@ const Login = () => {
           action={() => navigation.navigate("Register")}
           fullWidth
           theme="secondary"
+          loading={isLoading}
         />
       </View>
     </Container>

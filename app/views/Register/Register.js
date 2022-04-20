@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import Container from "widgets/shared/Container/Container";
 import { View, Text } from "react-native";
@@ -9,35 +9,48 @@ import { emailValidation, emptyField } from "../../utils/formValidations";
 import { loadImageFromGallery } from "app/utils/imageUtil";
 import { registerStyles } from "./RegisterStyles";
 import { Avatar } from "react-native-elements";
+import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const navigation = useNavigation();
+  const { Register, isLoading } = useAuth();
+
   const [image, setImage] = useState();
 
   const changeAvatar = async () => {
-    //array como parametro las dimensiones de la imagen
     const result = await loadImageFromGallery([1, 1]);
     setImage(result.image);
   };
-  const { email, password, name, onChange, onBlur, validForm } = useForm({
-    email: {
-      value: "",
-      validation: [emailValidation],
-    },
-    password: {
-      value: "",
-      validation: [emptyField],
-    },
-    name: {
-      value: "",
-      validation: [emptyField],
-    },
-  });
+  const {
+    email,
+    password,
+    name,
+    onChange,
+    onBlur,
+    validForm,
+    getFormData,
+    getFormParams,
+    form,
+  } = useForm();
 
-  const navigateToHome = () => {
-    navigation.getState();
-    navigation.replace("AppRoutes");
-  };
+  useFocusEffect(() => {
+    if (!form) {
+      getFormParams({
+        email: {
+          value: "",
+          validation: [emailValidation],
+        },
+        password: {
+          value: "",
+          validation: [emptyField],
+        },
+        name: {
+          value: "",
+          validation: [emptyField],
+        },
+      });
+    }
+  });
 
   return (
     <Container style={registerStyles.container} negativeSpacing={false}>
@@ -55,35 +68,36 @@ const Register = () => {
         <CustomInput
           placeholder="Escribe tu nombre"
           label="Name"
-          value={name.value}
+          value={name?.value}
           onChange={(value) => onChange(value, "name")}
           onBlur={() => onBlur("name")}
-          error={name.errorMessage}
+          error={name?.errorMessage}
           labelAlign="center"
         />
         <CustomInput
           placeholder="Escribe tu email"
           label="Email"
-          value={email.value}
+          value={email?.value}
           onChange={(value) => onChange(value, "email")}
           onBlur={() => onBlur("email")}
-          error={email.errorMessage}
+          error={email?.errorMessage}
           labelAlign="center"
         />
         <CustomInput
           placeholder="Escribe tu password"
           label="Password"
-          value={password.value}
+          value={password?.value}
           onChange={(value) => onChange(value, "password")}
           onBlur={() => onBlur("password")}
-          error={password.errorMessage}
+          error={password?.errorMessage}
           labelAlign="center"
         />
         <CustomButton
           title={"Registrarme"}
-          action={validForm ? navigateToHome : null}
+          action={validForm ? () => Register(getFormData()) : null}
           disable={!validForm}
           fullWidth
+          loading={isLoading}
         />
         <CustomButton
           title={"Ya tengo usuario"}

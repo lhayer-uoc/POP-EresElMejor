@@ -36,7 +36,6 @@ const Home = (props) => {
   };
 
   useEffect(() => {
-    console.log("navigation: ", navigation.getState().history);
     handleLastChallenge();
   }, [navigation]);
 
@@ -46,7 +45,7 @@ const Home = (props) => {
         <View style={homeStyles.wellcomeBlock}>
           <HomeBackground />
           <View style={homeStyles.wellcomeMessage}>
-            <HomeWelcome />
+            <HomeWelcome name={authState.userData?.name} />
           </View>
         </View>
         <View style={homeStyles.lastChallengeBlock}>

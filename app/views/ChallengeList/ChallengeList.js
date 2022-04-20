@@ -31,7 +31,6 @@ const ChallengeList = (props) => {
 
   const handleChallenges = async () => {
     const challenges = await getChallengesService();
-    console.log(challenges);
     setChallenges(challenges);
   };
 

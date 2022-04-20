@@ -26,4 +26,8 @@ export const styles = StyleSheet.create({
   disable: {
     opacity: 0.5,
   },
+  loadingIcon: {
+    marginLeft: 10,
+    color: "#fff",
+  },
 });

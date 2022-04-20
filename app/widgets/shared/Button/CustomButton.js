@@ -1,5 +1,6 @@
 import { React } from "react";
 import { View, Text, TouchableHighlight } from "react-native";
+import Spinner from "assets/spinner.svg";
 import { styles } from "./CustomButtonStyles";
 
 const CustomButton = ({
@@ -10,6 +11,7 @@ const CustomButton = ({
   disable = false,
   fullWidth = false,
   theme,
+  loading,
 }) => {
   return (
     <TouchableHighlight
@@ -26,6 +28,14 @@ const CustomButton = ({
         <Text style={{ ...styles.text, ...{ paddingLeft: children ? 10 : 0 } }}>
           {title}
         </Text>
+        {loading && (
+          <Spinner
+            style={styles.loadingIcon}
+            fill="#fff"
+            width={18}
+            height={18}
+          />
+        )}
       </View>
     </TouchableHighlight>
   );
