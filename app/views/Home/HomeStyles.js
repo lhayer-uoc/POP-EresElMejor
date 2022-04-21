@@ -11,6 +11,7 @@ export const homeStyles = StyleSheet.create({
   },
   lastChallengeBlock: {
     marginTop: "auto",
+    paddingHorizontal: 20,
   },
   wellcomeBlock: {
     height: "40%",

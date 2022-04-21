@@ -1,15 +1,14 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const challengeListStyles = StyleSheet.create({
-	container: {
-		marginTop: 20,
-	},
-	item: {
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		padding: 20,
-		marginVertical: 8,
-		marginHorizontal: 16,
-	},
+  container: {
+    padding: 20,
+  },
+  item: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    marginVertical: 8,
+  },
 });
