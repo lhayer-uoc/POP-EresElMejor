@@ -1,16 +1,22 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { AuthProvider } from "../../../context/AuthContext";
+import { AuthProvider, useAuth } from "../../../context/AuthContext";
 import Login from "../../../views/Login/Login";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MenuApp } from "./MenuApp";
 import Register from "../../../views/Register/Register";
+import SplashScreen from "../../../views/SplashScreen/SplashScreen";
 
 const Stack = createStackNavigator();
 
 const Auth = () => {
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Screen
+        name="SplashScreen"
+        component={SplashScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="Login"
         component={Login}

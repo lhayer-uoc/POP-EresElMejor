@@ -4,14 +4,15 @@ import {
   updateProfile,
   updateEmail,
 } from "firebase/auth";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { auth } from "../config/db";
 import { useNavigation } from "@react-navigation/native";
 import { StackActions } from "@react-navigation/native";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
+import dbUserToDto from "./dto/dbUserToDto";
 
 export const authInitialState = {
   isLoggedIn: false,
@@ -31,13 +32,7 @@ export const AuthProvider = ({ children }) => {
       await signInWithEmailAndPassword(auth, email.value, password.value);
 
       if (!authState.userData) {
-        setAuthState({
-          isLoggedIn: true,
-          userData: {
-            name: auth.currentUser.displayName,
-            email: auth.currentUser.email,
-          },
-        });
+        setAuthState(dbUserToDto(auth.currentUser));
       }
       navigation.dispatch(StackActions.replace("AppRoutes"));
     } catch (error) {
@@ -111,6 +106,18 @@ export const AuthProvider = ({ children }) => {
     }
     setIsLoading(false);
   };
+
+  const unsubscribe = auth.onAuthStateChanged((user) => {
+    if (!user) {
+      navigation.navigate("Login");
+      return;
+    }
+    navigation.dispatch(StackActions.replace("AppRoutes"));
+  });
+
+  useEffect(() => {
+    return unsubscribe;
+  });
 
   return (
     <AuthContext.Provider
