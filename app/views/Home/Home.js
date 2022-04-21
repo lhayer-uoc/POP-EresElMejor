@@ -59,7 +59,7 @@ const Home = (props) => {
             title={"Ver todos tus retos"}
             action={navigateToChallengeList}
           >
-            <RocketSvg width="16" height="16" fill="#FFF" />
+            <RocketSvg width={16} height={16} fill="#FFF" />
           </CustomButton>
         </View>
       </View>

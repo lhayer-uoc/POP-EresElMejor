@@ -1,5 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React from "react";
+import { useEffect } from "react";
 import { View } from "react-native";
 import Container from "widgets/shared/Container/Container";
 import { useAuth } from "../../context/AuthContext";
@@ -34,12 +35,12 @@ const Profile = () => {
     if (!form) {
       getFormParams({
         email: {
-          value: authState.userData.email,
+          value: authState?.userData?.email,
           validation: [emailValidation],
           isValid: true,
         },
         name: {
-          value: authState.userData.name,
+          value: authState?.userData?.name,
           validation: [emptyField],
           isValid: true,
         },

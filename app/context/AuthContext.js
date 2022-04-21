@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { auth } from "../config/db";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { StackActions } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import dbUserToDto from "./dto/dbUserToDto";
@@ -59,13 +59,7 @@ export const AuthProvider = ({ children }) => {
 
       const isLogged = auth.currentUser;
       if (isLogged) {
-        setAuthState(() => ({
-          isLoggedIn: true,
-          userData: {
-            name: isLogged.displayName,
-            email: isLogged.email,
-          },
-        }));
+        setAuthState(dbUserToDto(auth.currentUser));
         navigation.dispatch(StackActions.replace("AppRoutes"));
       } else {
         navigation.navigate("Login");
@@ -107,17 +101,16 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const unsubscribe = auth.onAuthStateChanged((user) => {
-    if (!user) {
-      navigation.navigate("Login");
-      return;
-    }
-    navigation.dispatch(StackActions.replace("AppRoutes"));
-  });
-
   useEffect(() => {
-    return unsubscribe;
-  });
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigation.navigate("Login");
+      }
+
+      navigation.dispatch(StackActions.replace("AppRoutes"));
+      setAuthState(dbUserToDto(user));
+    });
+  }, []);
 
   return (
     <AuthContext.Provider
