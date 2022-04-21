@@ -11,7 +11,7 @@ import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { profileStyles } from "./ProfileStyles";
 
 const Profile = () => {
-  const { authState, isLoading, UpdateUserProfile } = useAuth();
+  const { authState, isLoading, UpdateUserProfile, Logout } = useAuth();
   const {
     email,
     name,
@@ -85,6 +85,13 @@ const Profile = () => {
           disable={!validForm}
           fullWidth
           loading={isLoading}
+        />
+        <CustomButton
+          style={profileStyles.logoutButton}
+          title={"Cerrar sesión"}
+          action={Logout}
+          fullWidth
+          theme="secondary_outline"
         />
       </View>
     </Container>

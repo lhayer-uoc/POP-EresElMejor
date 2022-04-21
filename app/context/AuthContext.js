@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { auth } from "../config/db";
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { StackActions } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import dbUserToDto from "./dto/dbUserToDto";
@@ -26,15 +26,17 @@ export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(authInitialState);
   const navigation = useNavigation();
 
+  const goToHome = () => navigation.navigate("AppRoutes", { screen: "Home" });
+  const goToLogin = () => navigation.navigate("Auth", { screen: "Login" });
+
   const Login = async (email, password) => {
     setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
-
       if (!authState.userData) {
         setAuthState(dbUserToDto(auth.currentUser));
       }
-      navigation.dispatch(StackActions.replace("AppRoutes"));
+      goToHome();
     } catch (error) {
       showMessage({
         message: "Tu email y/o password no son correctos",
@@ -43,6 +45,16 @@ export const AuthProvider = ({ children }) => {
       console.log("error: ", error);
     }
     setIsLoading(false);
+  };
+
+  const Logout = async () => {
+    try {
+      await auth.signOut();
+      setAuthState(authInitialState);
+      goToLogin();
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
   const Register = async (formData) => {
@@ -60,7 +72,7 @@ export const AuthProvider = ({ children }) => {
       const isLogged = auth.currentUser;
       if (isLogged) {
         setAuthState(dbUserToDto(auth.currentUser));
-        navigation.dispatch(StackActions.replace("AppRoutes"));
+        goToHome();
       } else {
         navigation.navigate("Login");
       }
@@ -102,14 +114,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
-        navigation.navigate("Login");
+        goToLogin();
+        return;
       }
-
-      navigation.dispatch(StackActions.replace("AppRoutes"));
+      goToHome();
       setAuthState(dbUserToDto(user));
     });
+    unsubscribe();
+
+    return unsubscribe;
   }, []);
 
   return (
@@ -119,6 +134,7 @@ export const AuthProvider = ({ children }) => {
         Login,
         Register,
         UpdateUserProfile,
+        Logout,
         isLoading,
       }}
     >
