@@ -5,4 +5,7 @@ export const profileStyles = StyleSheet.create({
     marginVertical: 30,
     paddingHorizontal: 30,
   },
+  logoutButton: {
+    marginTop: 60,
+  },
 });

@@ -1,5 +1,11 @@
 import { StyleSheet } from "react-native";
 
+const commonText = {
+  color: "#FFFFFF",
+  fontSize: 16,
+  fontWeight: "bold",
+};
+
 export const styles = StyleSheet.create({
   button: {
     backgroundColor: "#000",
@@ -12,12 +18,20 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
   },
   text: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "bold",
+    ...commonText,
+  },
+  text_secondary_outline: {
+    ...commonText,
+    color: "#8E8E8E",
   },
   secondary: {
     backgroundColor: "#8E8E8E",
+  },
+  secondary_outline: {
+    backgroundColor: "transparent",
+    borderWidth: 2,
+    borderStyle: "solid",
+    borderColor: "#8E8E8E",
   },
   container: {
     flexDirection: "row",

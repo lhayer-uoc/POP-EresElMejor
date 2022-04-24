@@ -72,7 +72,7 @@ const Contact = () => {
         />
         <CustomButton
           title="Envíar"
-          customStyles={contactStyles.button}
+          style={contactStyles.button}
           action={() => {
             sendEmail(to.value, subject.value, body.value);
           }}

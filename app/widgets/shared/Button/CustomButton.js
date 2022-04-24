@@ -7,11 +7,11 @@ const CustomButton = ({
   title = "",
   action = null,
   children = null,
-  customStyles,
   disable = false,
   fullWidth = false,
   theme,
   loading,
+  style,
 }) => {
   return (
     <TouchableHighlight
@@ -19,13 +19,18 @@ const CustomButton = ({
         styles.button,
         { width: fullWidth ? "100%" : "auto" },
         theme && styles[theme],
-        customStyles,
+        style,
       ]}
       onPress={!disable ? action : null}
     >
       <View style={[styles.container, disable && styles.disable]}>
         {children}
-        <Text style={{ ...styles.text, ...{ paddingLeft: children ? 10 : 0 } }}>
+        <Text
+          style={{
+            ...styles[`text${theme ? `_${theme}` : ""}`],
+            ...{ paddingLeft: children ? 10 : 0 },
+          }}
+        >
           {title}
         </Text>
         {loading && (

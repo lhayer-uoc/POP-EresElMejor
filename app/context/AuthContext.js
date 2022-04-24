@@ -4,14 +4,15 @@ import {
   updateProfile,
   updateEmail,
 } from "firebase/auth";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
 import { auth } from "../config/db";
 import { useNavigation } from "@react-navigation/native";
 import { StackActions } from "@react-navigation/native";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
+import dbUserToDto from "./dto/dbUserToDto";
 
 export const authInitialState = {
   isLoggedIn: false,
@@ -25,21 +26,17 @@ export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState(authInitialState);
   const navigation = useNavigation();
 
+  const goToHome = () => navigation.navigate("AppRoutes", { screen: "Home" });
+  const goToLogin = () => navigation.navigate("Auth", { screen: "Login" });
+
   const Login = async (email, password) => {
     setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
-
       if (!authState.userData) {
-        setAuthState({
-          isLoggedIn: true,
-          userData: {
-            name: auth.currentUser.displayName,
-            email: auth.currentUser.email,
-          },
-        });
+        setAuthState(dbUserToDto(auth.currentUser));
       }
-      navigation.dispatch(StackActions.replace("AppRoutes"));
+      goToHome();
     } catch (error) {
       showMessage({
         message: "Tu email y/o password no son correctos",
@@ -48,6 +45,16 @@ export const AuthProvider = ({ children }) => {
       console.log("error: ", error);
     }
     setIsLoading(false);
+  };
+
+  const Logout = async () => {
+    try {
+      await auth.signOut();
+      setAuthState(authInitialState);
+      goToLogin();
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
   const Register = async (formData) => {
@@ -64,14 +71,8 @@ export const AuthProvider = ({ children }) => {
 
       const isLogged = auth.currentUser;
       if (isLogged) {
-        setAuthState(() => ({
-          isLoggedIn: true,
-          userData: {
-            name: isLogged.displayName,
-            email: isLogged.email,
-          },
-        }));
-        navigation.dispatch(StackActions.replace("AppRoutes"));
+        setAuthState(dbUserToDto(auth.currentUser));
+        goToHome();
       } else {
         navigation.navigate("Login");
       }
@@ -112,6 +113,20 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (!user) {
+        goToLogin();
+        return;
+      }
+      goToHome();
+      setAuthState(dbUserToDto(user));
+    });
+    unsubscribe();
+
+    return unsubscribe;
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -119,6 +134,7 @@ export const AuthProvider = ({ children }) => {
         Login,
         Register,
         UpdateUserProfile,
+        Logout,
         isLoading,
       }}
     >

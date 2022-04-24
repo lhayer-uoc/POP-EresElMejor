@@ -1,5 +1,6 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React from "react";
+import { useEffect } from "react";
 import { View } from "react-native";
 import Container from "widgets/shared/Container/Container";
 import { useAuth } from "../../context/AuthContext";
@@ -10,7 +11,7 @@ import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { profileStyles } from "./ProfileStyles";
 
 const Profile = () => {
-  const { authState, isLoading, UpdateUserProfile } = useAuth();
+  const { authState, isLoading, UpdateUserProfile, Logout } = useAuth();
   const {
     email,
     name,
@@ -34,12 +35,12 @@ const Profile = () => {
     if (!form) {
       getFormParams({
         email: {
-          value: authState.userData.email,
+          value: authState?.userData?.email,
           validation: [emailValidation],
           isValid: true,
         },
         name: {
-          value: authState.userData.name,
+          value: authState?.userData?.name,
           validation: [emptyField],
           isValid: true,
         },
@@ -84,6 +85,13 @@ const Profile = () => {
           disable={!validForm}
           fullWidth
           loading={isLoading}
+        />
+        <CustomButton
+          style={profileStyles.logoutButton}
+          title={"Cerrar sesión"}
+          action={Logout}
+          fullWidth
+          theme="secondary_outline"
         />
       </View>
     </Container>
