@@ -6,7 +6,7 @@ import { loadImageFromGallery } from "app/utils/imageUtil";
 
 import { styleHomeWelcome } from "./HomeWelcomeStyles";
 
-export const HomeWelcome = () => {
+export const HomeWelcome = ({ name }) => {
   const [image, setImage] = useState(
     "https://jsl-online.com/wp-content/uploads/2017/01/placeholder-user.png"
   );
@@ -27,7 +27,7 @@ export const HomeWelcome = () => {
         onPress={changeAvatar}
       />
 
-      <Text style={styleHomeWelcome.title}>Hola, Francisco</Text>
+      <Text style={styleHomeWelcome.title}>Hola, {name}</Text>
       <Text style={styleHomeWelcome.subtitle}>Eres el mejor</Text>
     </View>
   );

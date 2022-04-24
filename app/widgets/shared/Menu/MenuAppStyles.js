@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-export const menuStyles = StyleSheet.create({
+export const menuAppStyles = StyleSheet.create({
   createChallenge: {
     borderRadius: 50,
     backgroundColor: "black",
