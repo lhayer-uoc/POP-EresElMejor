@@ -16,6 +16,7 @@ const Item = ({ item, onPress, backgroundColor }) => {
       heading2={item.description}
       onPress={onPress}
       style={[challengeListStyles.item, backgroundColor]}
+      category={item.category}
     />
   );
 };

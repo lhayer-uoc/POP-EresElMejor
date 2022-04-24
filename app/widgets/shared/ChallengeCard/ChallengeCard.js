@@ -3,11 +3,15 @@ import { TouchableOpacity, View } from "react-native";
 import CircleProgressBar from "app/widgets/shared/CircleProgressBar/CircleProgressBar";
 import HeadingTextBlock from "app/widgets/shared/HeadingTextBlock/HeadingTextBlock";
 import SVGImg from "assets/right-arrow.svg";
+import { IconCategory } from "../IconsCategory/IconCategory";
 import { styles } from "./ChallengeCardStyles";
 
-const ChallengeCard = ({ percentage, heading1, heading2, onPress, style }) => {
+const ChallengeCard = ({ percentage, heading1, heading2, onPress, style, category }) => {
   return (
     <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
+      <View style={styles.containerIcon}>
+        <IconCategory category={category} />
+      </View>
       <View style={styles.cardContent}>
         <View style={styles.leftColumn}>
           <CircleProgressBar percentage={percentage} />

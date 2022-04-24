@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     width: "90%",
   },
   rightColumn: {
-    maxWidth: "80%",
+    maxWidth: "60%",
     paddingLeft: 10,
   },
   arrowLink: {
@@ -22,5 +22,9 @@ export const styles = StyleSheet.create({
     top: "50%",
     right: 5,
     transform: [{ translateY: -5 }],
+  },
+  containerIcon:{
+    marginRight: 8,
+    maxWidth: "10%"
   },
 });
