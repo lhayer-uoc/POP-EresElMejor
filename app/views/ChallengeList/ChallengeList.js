@@ -61,6 +61,7 @@ const ChallengeList = (props) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           extraData={selectedId}
+          style={challengeListStyles.list}
         />
       </View>
     </Container>
