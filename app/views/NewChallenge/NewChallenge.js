@@ -16,6 +16,9 @@ import { useFocusEffect } from "@react-navigation/native";
 import { emptyField } from "../../utils/formValidations";
 import { Timestamp } from "firebase/firestore";
 import { ScrollView } from "react-native-gesture-handler";
+
+
+
 const NewChallenge = () => {
 
   const { title, description, periodicity, time, category, percentage, timestamp, onChange, onBlur, form, getFormParams } = useForm();
@@ -35,15 +38,7 @@ const NewChallenge = () => {
     }
   });
 
-  const docData = {
-    title: title.value,
-    category: category.value,
-    description: description.value,
-    percentage: percentage.value,
-    periodicity: periodicity.value,
-    time: time.value,
-    timestamp: timestamp.value
-  }
+ 
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -97,7 +92,7 @@ const NewChallenge = () => {
             error={periodicity?.errorMessage}
             labelAlign="center"
           />
-          <TouchableOpacity style={newChallengeStyles.button} onPress={() => setChallengeService(docData)}>
+          <TouchableOpacity style={newChallengeStyles.button} onPress={() => setChallengeService(title, description, time, category, percentage, periodicity, timestamp) } >
             <Text style={newChallengeStyles.textButton}> Guardar reto</Text>
           </TouchableOpacity>
         </ScrollView>

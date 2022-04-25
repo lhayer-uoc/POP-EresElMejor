@@ -65,7 +65,6 @@ export const useForm = () => {
       },
     });
   };
-  
 
   const getFormData = () => state;
 
