@@ -12,6 +12,8 @@ import { homeStyles } from "./HomeStyles";
 import { getLastChallengeService } from "../../services/getLastChallengeService";
 import { useAuth } from "../../context/AuthContext";
 import { useFocusEffect } from "@react-navigation/native";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
 const Home = (props) => {
   const [lastChallenge, setLastChallenge] = useState(null);
@@ -32,9 +34,11 @@ const Home = (props) => {
     setLastChallenge(challenge);
   };
 
-  useFocusEffect(() => {
-    handleLastChallenge();
-  });
+  useFocusEffect(
+    useCallback(() => {
+      handleLastChallenge();
+    }, [])
+  );
 
   return (
     <Container negativeSpacing={true}>

@@ -4,7 +4,7 @@ import { challengeToDto } from "./dto/challengeToDto";
 
 export const getLastChallengeService = async () => {
   const challengesRef = collection(db, "challenges");
-  const q = query(challengesRef, orderBy("timestamp", "desc"), limit(1));
+  const q = query(challengesRef, orderBy("startDate", "desc"), limit(1));
   try {
     const querySnapshot = await getDocs(q);
     let lastChallenge = "";

@@ -12,12 +12,22 @@ import { setChallengeService } from "../../services/setNewChallenge";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { useForm } from "../../hooks/useForm";
 import { useFocusEffect } from "@react-navigation/native";
-import { emptyField } from "../../utils/formValidations";
+import { emptyField, onlyNumbers } from "../../utils/formValidations";
 import { ScrollView } from "react-native-gesture-handler";
 import { showMessage } from "react-native-flash-message";
 import { useKeyboardStatus } from "../../hooks/useKeyboardStatus";
+import { useState } from "react";
+
+const categoryOptions = [
+  { name: "Programación", value: "programming" },
+  { name: "Ocio", value: "leasure" },
+  { name: "Nutrición", value: "nutrition" },
+  { name: "Deporte", value: "sport" },
+  { name: "Salud", value: "health" },
+];
 
 const NewChallenge = () => {
+  const [category, setCategory] = useState("programming");
   const isKeyboardShown = useKeyboardStatus();
 
   const {
@@ -25,8 +35,6 @@ const NewChallenge = () => {
     description,
     periodicity,
     time,
-    category,
-    percentage,
     onChange,
     onBlur,
     form,
@@ -41,7 +49,6 @@ const NewChallenge = () => {
         description,
         time,
         category,
-        percentage,
         periodicity
       );
       showMessage({
@@ -50,11 +57,16 @@ const NewChallenge = () => {
       });
       resetForm();
     } catch (error) {
+      console.log("error: ", error);
       showMessage({
         message: "Ha ocurrido un error, vuelve a intentarlo",
         type: "error",
       });
     }
+  };
+
+  const handleChangeSelect = (itemValue) => {
+    setCategory(itemValue);
   };
 
   useFocusEffect(() => {
@@ -63,9 +75,8 @@ const NewChallenge = () => {
         title: { value: "", validation: [emptyField] },
         description: { value: "", validation: [emptyField] },
         periodicity: { value: "", validation: [emptyField] },
-        time: { value: "", validation: [emptyField] },
-        category: { value: "", validation: [emptyField] },
-        percentage: { value: "", validation: [emptyField] },
+        time: { value: "", validation: [emptyField, onlyNumbers] },
+        category: { value: "", validation: [emptyField, onlyNumbers] },
       });
     }
   });
@@ -95,14 +106,14 @@ const NewChallenge = () => {
           <CustomInput
             placeholder="Escribe la categoria del reto"
             label="Categoria"
-            value={category?.value}
-            onChange={(value) => onChange(value, "category")}
-            onBlur={() => onBlur("description")}
-            error={category?.errorMessage}
+            type="select"
+            selectValue={category}
+            onChangeSelect={handleChangeSelect}
             labelAlign="center"
+            options={categoryOptions}
           />
           <CustomInput
-            placeholder="Escribe el tiempo que durará el reto"
+            placeholder="Escribe el número de días que durará el reto"
             label="Duración"
             value={time?.value}
             onChange={(value) => onChange(value, "time")}
@@ -111,7 +122,7 @@ const NewChallenge = () => {
             labelAlign="center"
           />
           <CustomInput
-            placeholder="Escribe la periodicidad del reto"
+            placeholder="Escribe cuantos días le dedicaras a la semana"
             label="Periodicidad"
             value={periodicity?.value}
             onChange={(value) => onChange(value, "periodicity")}
