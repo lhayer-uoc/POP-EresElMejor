@@ -1,11 +1,4 @@
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  getDoc,
-  limit,
-} from "firebase/firestore";
+import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../config/db";
 import { challengeToDto } from "./dto/challengeToDto";
 

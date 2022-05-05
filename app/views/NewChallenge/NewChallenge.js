@@ -8,22 +8,55 @@ import {
 } from "react-native";
 
 import { newChallengeStyles } from "./NewChallengeStyles";
-import { HomeBackground } from "../../widgets/home/HomeBackground/HomeBackground";
 import { setChallengeService } from "../../services/setNewChallenge";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { useForm } from "../../hooks/useForm";
 import { useFocusEffect } from "@react-navigation/native";
 import { emptyField } from "../../utils/formValidations";
-import { Timestamp } from "firebase/firestore";
 import { ScrollView } from "react-native-gesture-handler";
-
-
+import { showMessage } from "react-native-flash-message";
+import { useKeyboardStatus } from "../../hooks/useKeyboardStatus";
 
 const NewChallenge = () => {
+  const isKeyboardShown = useKeyboardStatus();
 
-  const { title, description, periodicity, time, category, percentage, timestamp, onChange, onBlur, form, getFormParams } = useForm();
+  const {
+    title,
+    description,
+    periodicity,
+    time,
+    category,
+    percentage,
+    onChange,
+    onBlur,
+    form,
+    getFormParams,
+    resetForm,
+  } = useForm();
 
-  //FALTA IMPLEMENTAR EL CALCULO DE PERCENTAGE
+  const handleSubmitForm = async () => {
+    try {
+      await setChallengeService(
+        title,
+        description,
+        time,
+        category,
+        percentage,
+        periodicity
+      );
+      showMessage({
+        message: "Tu reto se ha creado correctamente",
+        type: "success",
+      });
+      resetForm();
+    } catch (error) {
+      showMessage({
+        message: "Ha ocurrido un error, vuelve a intentarlo",
+        type: "error",
+      });
+    }
+  };
+
   useFocusEffect(() => {
     if (!form) {
       getFormParams({
@@ -33,20 +66,14 @@ const NewChallenge = () => {
         time: { value: "", validation: [emptyField] },
         category: { value: "", validation: [emptyField] },
         percentage: { value: "", validation: [emptyField] },
-        timestamp: { value: Timestamp.fromDate(new Date()), validation: [emptyField] },
       });
     }
   });
 
- 
-
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View >
-        <View style={newChallengeStyles.image}>
-          <HomeBackground />
-        </View>
-        <ScrollView contentContainerStyle={newChallengeStyles.container}>
+      <ScrollView>
+        <View style={newChallengeStyles.container}>
           <CustomInput
             placeholder="Escribe el nombre del reto"
             label="Titulo"
@@ -92,13 +119,17 @@ const NewChallenge = () => {
             error={periodicity?.errorMessage}
             labelAlign="center"
           />
-          <TouchableOpacity style={newChallengeStyles.button} onPress={() => setChallengeService(title, description, time, category, percentage, periodicity, timestamp) } >
-            <Text style={newChallengeStyles.textButton}> Guardar reto</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </View>
+          {!isKeyboardShown && (
+            <TouchableOpacity
+              style={newChallengeStyles.button}
+              onPress={handleSubmitForm}
+            >
+              <Text style={newChallengeStyles.textButton}> Guardar reto</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </ScrollView>
     </TouchableWithoutFeedback>
   );
 };
 export default NewChallenge;
-
