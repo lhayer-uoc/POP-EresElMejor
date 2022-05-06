@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   Keyboard,
   TouchableWithoutFeedback,
+  Button
 } from "react-native";
 
 import { newChallengeStyles } from "./NewChallengeStyles";
@@ -17,17 +18,11 @@ import { ScrollView } from "react-native-gesture-handler";
 import { showMessage } from "react-native-flash-message";
 import { useKeyboardStatus } from "../../hooks/useKeyboardStatus";
 import { useState } from "react";
+import { getCategoriesService } from "../../services/getCategoriesService";
 
-const categoryOptions = [
-  { name: "Programación", value: "programming" },
-  { name: "Ocio", value: "leasure" },
-  { name: "Nutrición", value: "nutrition" },
-  { name: "Deporte", value: "sport" },
-  { name: "Salud", value: "health" },
-];
 
 const NewChallenge = () => {
-  const [category, setCategory] = useState("programming");
+  const [category, setCategory] = useState([{ name: "", value: "" }]);
   const isKeyboardShown = useKeyboardStatus();
 
   const {
@@ -65,9 +60,14 @@ const NewChallenge = () => {
     }
   };
 
-  const handleChangeSelect = (itemValue) => {
-    setCategory(itemValue);
-  };
+  const handleChangeSelect = async () => {
+    const categories = await getCategoriesService();
+    setCategory(categories);
+  }
+
+  useFocusEffect(useCallback(() => {
+    handleChangeSelect();
+  }, []));
 
   useFocusEffect(() => {
     if (!form) {
@@ -110,7 +110,7 @@ const NewChallenge = () => {
             selectValue={category}
             onChangeSelect={handleChangeSelect}
             labelAlign="center"
-            options={categoryOptions}
+            options={category}
           />
           <CustomInput
             placeholder="Escribe el número de días que durará el reto"
