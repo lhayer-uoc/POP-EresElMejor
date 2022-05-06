@@ -11,7 +11,7 @@ const firebaseConfig = {
   measurementId: "G-9KQYYGZ3H2",
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const db = initializeFirestore(app, {
   experimentalForceLongPolling: true,
 });

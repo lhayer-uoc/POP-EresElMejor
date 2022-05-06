@@ -14,6 +14,8 @@ const initializeForm = (formFields) => {
 };
 
 export const useForm = () => {
+  let initialForm;
+
   const [state, setState] = useState();
   const [validForm, setValidForm] = useState(false);
 
@@ -69,7 +71,12 @@ export const useForm = () => {
   const getFormData = () => state;
 
   const getFormParams = (params) => {
-    setState(initializeForm(params));
+    initialForm = initializeForm(params);
+    setState(initialForm);
+  };
+
+  const resetForm = () => {
+    setState(initialForm);
   };
 
   useEffect(() => {
@@ -85,5 +92,6 @@ export const useForm = () => {
     validForm,
     getFormData,
     getFormParams,
+    resetForm,
   };
 };

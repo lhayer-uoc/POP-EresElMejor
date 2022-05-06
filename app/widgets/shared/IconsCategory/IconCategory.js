@@ -9,11 +9,11 @@ import defaultIcon from "../../../../assets/svgCategory/defaultIcon";
 
 export const IconCategory = ({ category, style }) => {
   const iconsXml = {
-    Deporte: sportIcon,
-    Programacion: pc,
-    Salud: pc,
-    Nutricion: nutricion,
-    Ocio: hobbie,
+    sport: sportIcon,
+    programming: pc,
+    health: pc,
+    nutrition: nutricion,
+    leasure: hobbie,
   };
 
   return (
