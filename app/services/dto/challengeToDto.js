@@ -4,8 +4,9 @@ const getPercentage = (endDate, challengeDays) => {
   const dayConversor = 24 * 60 * 60 * 1000;
   if (today > finishChallengeDate) return 100;
 
-  const restOfDays = Math.ceil((finishChallengeDate - today) / dayConversor);
+  const restOfDays = Math.floor((finishChallengeDate - today) / dayConversor);
   const completedDays = challengeDays - restOfDays;
+
   if (completedDays === 0) return 0;
 
   return (completedDays * 100) / challengeDays;
