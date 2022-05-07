@@ -19,7 +19,7 @@ import { useKeyboardStatus } from '../../hooks/useKeyboardStatus';
 import { useState } from 'react';
 import { getCategoriesService } from '../../services/getCategoriesService';
 
-const NewChallenge = () => {
+const NewChallenge = ({navigation}) => {
 	const [categories, setCategories] = useState([]);
 	const isKeyboardShown = useKeyboardStatus();
 
@@ -51,6 +51,7 @@ const NewChallenge = () => {
 				type: 'success',
 			});
 			resetForm();
+			navigation.navigate('Retos');
 		} catch (error) {
 			console.log('error: ', error);
 			showMessage({
