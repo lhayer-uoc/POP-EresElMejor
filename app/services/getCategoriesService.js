@@ -10,7 +10,7 @@ export const getCategoriesService = async () => {
         const Snapshot = await getDocs(docRef);
         Snapshot.forEach((doc) => {
             categoriesList.push(
-                { name: doc.data().name, value: doc.data().name }
+                { name: doc.data().name, value: doc.data().value }
             )
         })
         return categoriesList;
