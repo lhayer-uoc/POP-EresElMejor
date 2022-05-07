@@ -18,4 +18,14 @@ const emptyField = (value) => {
   return true;
 };
 
-export { emailValidation, emptyField };
+const onlyNumbers = (value) => {
+  const hasOnlyNumbers = /^[0-9]+$/.test(value);
+  if (!hasOnlyNumbers) {
+    return {
+      message: "El campo solo puede incluir números",
+    };
+  }
+  return true;
+};
+
+export { emailValidation, emptyField, onlyNumbers };

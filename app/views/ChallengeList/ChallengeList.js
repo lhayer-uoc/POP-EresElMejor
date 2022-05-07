@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Container from "widgets/shared/Container/Container";
 import { View } from "react-native";
 
 import { challengeListStyles } from "./ChallengeListStyles";
 import List from "app/widgets/shared/List/List";
-import { useEffect } from "react";
 import { getChallengesService } from "../../services/getChallengesService";
 import ChallengeCard from "../../widgets/shared/ChallengeCard/ChallengeCard";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Item = ({ item, onPress, backgroundColor }) => {
   return (
@@ -35,9 +35,11 @@ const ChallengeList = (props) => {
     setChallenges(challenges);
   };
 
-  useEffect(() => {
-    handleChallenges();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      handleChallenges();
+    }, [])
+  );
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? "#E3E3E3" : "#FFF";
