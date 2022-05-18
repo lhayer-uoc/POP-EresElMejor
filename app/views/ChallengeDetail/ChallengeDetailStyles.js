@@ -3,6 +3,13 @@ import { StyleSheet } from "react-native";
 export const challengeDetailStyles = StyleSheet.create({
   container: {
     marginTop: 20,
+    marginBottom: "110%"
+  },
+  image:{
+    alignSelf:'center', 
+    height: "50%", 
+    width: "100%",
+    marginBottom: 20
   },
   weekWrapper: {
     display: "flex",

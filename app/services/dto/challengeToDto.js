@@ -21,5 +21,6 @@ export const challengeToDto = (data) => {
     periodicity: data.periodicity,
     time: data.time ?? 0,
     category: data.category,
+    image: data.image ?? "",
   };
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Image, Text, View, ScrollView } from "react-native";
 import CircleProgressBar from "app/widgets/shared/CircleProgressBar/CircleProgressBar";
 import HeadingTextBlock from "app/widgets/shared/HeadingTextBlock/HeadingTextBlock";
 import { challengeDetailStyles } from "./ChallengeDetailStyles";
@@ -17,8 +17,10 @@ const getPeriodictiyToDay = (day) => {
 const ChallengeDetail = (props) => {
   const { item } = props.route.params;
   return (
-    <Container>
+    <Container >
+      <ScrollView>
       <View style={challengeDetailStyles.container}>
+      <Image source={{uri: item?.image}} style ={challengeDetailStyles.image}/>
         <View style={challengeDetailStyles.brief}>
           <CircleProgressBar
             style={challengeDetailStyles.circleProgressBar}
@@ -57,6 +59,7 @@ const ChallengeDetail = (props) => {
           <Text>{item.time} días</Text>
         </View>
       </View>
+      </ScrollView>
     </Container>
   );
 };
