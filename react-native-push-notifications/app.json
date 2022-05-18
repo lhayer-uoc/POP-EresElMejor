@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "react-native-push-notifications",
+    "slug": "react-native-push-notifications",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}

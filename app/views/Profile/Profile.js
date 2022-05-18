@@ -1,6 +1,5 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React from "react";
-import { useEffect } from "react";
 import { View } from "react-native";
 import Container from "widgets/shared/Container/Container";
 import { useAuth } from "../../context/AuthContext";

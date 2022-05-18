@@ -10,9 +10,11 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { auth } from "../config/db";
 import { useNavigation } from "@react-navigation/native";
-import { StackActions } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import dbUserToDto from "./dto/dbUserToDto";
+import generatePushNotificationsToken from "../utils/notifications";
+import { setUserExtraProfile } from "../services/setUserExtraProfile";
+import { getExtraProfileService } from "../services/getExtraProfileService";
 
 export const authInitialState = {
   isLoggedIn: false,
@@ -60,14 +62,17 @@ export const AuthProvider = ({ children }) => {
   const Register = async (formData) => {
     setIsLoading(true);
     try {
-      const registerResponse = await createUserWithEmailAndPassword(
+      const createUser = await createUserWithEmailAndPassword(
         auth,
         formData.email.value,
         formData.password.value
       );
-      await UpdateUserProfile(registerResponse.user, {
+
+      await updateProfile(createUser.user, {
         displayName: formData.name.value,
       });
+      const token = await generatePushNotificationsToken();
+      await setUserExtraProfile({ notificationToken: token }, createUser.user);
 
       const isLogged = auth.currentUser;
       if (isLogged) {
@@ -88,21 +93,21 @@ export const AuthProvider = ({ children }) => {
 
   const UpdateUserProfile = async (userData) => {
     const profileData = {};
+
     for (let field in userData) {
-      profileData[field] = userData[field].value;
+      profileData[field] = userData[field];
     }
+
     setIsLoading(true);
+
     try {
       await updateProfile(auth.currentUser, {
         displayName: profileData.name,
       });
       await updateEmail(auth.currentUser, profileData.email);
-      setAuthState(() => ({
-        isLoggedIn: true,
-        userData: {
-          ...profileData,
-        },
-      }));
+
+      setAuthState(dbUserToDto(profileData));
+
       showMessage({
         message: "Tus cambios se han guardado",
         type: "success",
@@ -113,6 +118,12 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const handleSetAuthState = async (user) => {
+    const extraInfo = await getExtraProfileService(user);
+    const data = { ...user, ...extraInfo };
+    setAuthState(dbUserToDto(data));
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -120,7 +131,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
       goToHome();
-      setAuthState(dbUserToDto(user));
+      handleSetAuthState(user);
     });
     unsubscribe();
 
