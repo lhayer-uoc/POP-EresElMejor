@@ -25,6 +25,9 @@ const Item = ({ item, onPress, backgroundColor }) => {
 const ChallengeList = props => {
 	const [challenges, setChallenges] = useState(null);
 	const [selectedId, setSelectedId] = useState(null);
+	const [isLoading, setIsLoading] = useState(true);
+	const progressBarColor = '#fc0';
+	const progressBarStyle = 'Horizontal';
 
 	const onSelectItem = item => {
 		setSelectedId(item.id);
@@ -32,8 +35,10 @@ const ChallengeList = props => {
 	};
 
 	const handleChallenges = async () => {
+		setIsLoading(true);
 		const challenges = await getChallengesService();
 		setChallenges(challenges);
+		setTimeout(() => setIsLoading(false), 1000);
 	};
 
 	useFocusEffect(
@@ -65,18 +70,12 @@ const ChallengeList = props => {
 	return (
 		<Container>
 			<View style={challengeListStyles.container}>
-				<View style={styles.example}>
+				<View style={challengeListStyles.loadingContainer}>
 					<ProgressBar
-						styleAttr="Horizontal"
-						color="#2196F3"
-						progress={progress}
+						animating={isLoading}
+						styleAttr={progressBarStyle}
+						color={progressBarColor}
 					/>
-					{/* <ProgressBar
-						styleAttr="Horizontal"
-						color="#2196F3"
-						indeterminate={false}
-						progress={0.5}
-					/> */}
 				</View>
 				<List
 					data={challenges}
