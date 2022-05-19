@@ -11,7 +11,7 @@ const getStartDate = () => {
   return Timestamp.fromDate(new Date()).toDate();
 };
 
-export const setChallengeService = (
+export const setChallengeService = async (
   title,
   description,
   time,
@@ -29,5 +29,7 @@ export const setChallengeService = (
     startDate: getStartDate(),
     endDate: getEndDate(time.value),
   };
-  return setDoc(newChallengeRef, docData);
+  await setDoc(newChallengeRef, docData);
+
+  return newChallengeRef.id;
 };

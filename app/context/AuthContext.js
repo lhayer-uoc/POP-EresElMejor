@@ -71,6 +71,7 @@ export const AuthProvider = ({ children }) => {
       await updateProfile(createUser.user, {
         displayName: formData.name.value,
       });
+
       const token = await generatePushNotificationsToken();
       await setUserExtraProfile({ notificationToken: token }, createUser.user);
 

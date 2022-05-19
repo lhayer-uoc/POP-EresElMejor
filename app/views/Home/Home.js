@@ -13,9 +13,6 @@ import { getLastChallengeService } from "../../services/getLastChallengeService"
 import { useAuth } from "../../context/AuthContext";
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
-import { schedulePushNotification } from "../../hooks/useNotification";
-import { auth } from "../../config/db";
-// import sendPushNotification from "../../services/notifications/notifications";
 
 const Home = (props) => {
   const [lastChallenge, setLastChallenge] = useState(null);
@@ -41,23 +38,6 @@ const Home = (props) => {
       handleLastChallenge();
     }, [])
   );
-
-  const handleNotification = async () => {
-    await schedulePushNotification(
-      {
-        title: "Título nota",
-        body: "hola que tal...",
-        trigger: {
-          seconds: 2,
-        },
-      },
-      authState.userData.token
-    );
-  };
-
-  useEffect(() => {
-    if (authState.userData?.token) handleNotification();
-  }, [authState]);
 
   return (
     <Container negativeSpacing={true}>

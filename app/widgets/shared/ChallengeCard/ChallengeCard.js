@@ -1,5 +1,5 @@
 import { React } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Text } from "react-native";
 import CircleProgressBar from "app/widgets/shared/CircleProgressBar/CircleProgressBar";
 import HeadingTextBlock from "app/widgets/shared/HeadingTextBlock/HeadingTextBlock";
 import SVGImg from "assets/right-arrow.svg";
