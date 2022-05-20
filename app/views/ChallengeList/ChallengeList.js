@@ -7,6 +7,7 @@ import List from "app/widgets/shared/List/List";
 import { getChallengesService } from "../../services/getChallengesService";
 import ChallengeCard from "../../widgets/shared/ChallengeCard/ChallengeCard";
 import { useFocusEffect } from "@react-navigation/native";
+import { useAuth } from "../../context/AuthContext";
 
 const Item = ({ item, onPress, backgroundColor }) => {
   return (
@@ -25,21 +26,22 @@ const Item = ({ item, onPress, backgroundColor }) => {
 const ChallengeList = (props) => {
   const [challenges, setChallenges] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const { authState } = useAuth();
 
   const onSelectItem = (item) => {
     setSelectedId(item.id);
     props.navigation.navigate("Reto", { itemId: item.id, item });
   };
 
-  const handleChallenges = async () => {
-    const challenges = await getChallengesService();
+  const handleChallenges = async (id) => {
+    const challenges = await getChallengesService(id);
     setChallenges(challenges);
   };
 
   useFocusEffect(
     useCallback(() => {
-      handleChallenges();
-    }, [])
+      if (authState.userData?.id) handleChallenges(authState.userData.id);
+    }, [authState])
   );
 
   const renderItem = ({ item }) => {
