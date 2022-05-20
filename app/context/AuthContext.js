@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
       if (!authState.userData) {
-        setAuthState(dbUserToDto(auth.currentUser));
+        setAuthState(dbUserToDto({ id: auth.uid, ...auth.currentUser }));
       }
       goToHome();
     } catch (error) {
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
 
       const isLogged = auth.currentUser;
       if (isLogged) {
-        setAuthState(dbUserToDto(auth.currentUser));
+        setAuthState(dbUserToDto({ id: auth.uid, ...auth.currentUser }));
         goToHome();
       } else {
         navigation.navigate("Login");
@@ -132,7 +132,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
       goToHome();
-      handleSetAuthState(user);
+      handleSetAuthState({ id: auth.uid, ...user });
     });
     unsubscribe();
 

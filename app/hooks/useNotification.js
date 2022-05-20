@@ -35,7 +35,7 @@ const usePushNotifications = (onTapNotification) => {
           lightColor: "#FF231F7C",
         });
       } catch (error) {
-        handleConfigNotifications();
+        console.log("error setNotificationChannelAsync: ", error);
       }
     }
   };

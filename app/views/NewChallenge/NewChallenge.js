@@ -22,6 +22,7 @@ import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { useAuth } from "../../context/AuthContext";
 import { useHandleNotifications } from "../../hooks/useNotification";
 import CustomButton from "../../widgets/shared/Button/CustomButton";
+import { auth } from "../../config/db";
 
 const NewChallenge = ({ navigation }) => {
   const [categories, setCategories] = useState([]);
@@ -68,7 +69,8 @@ const NewChallenge = ({ navigation }) => {
         description,
         time,
         category,
-        periodicityDays.values
+        periodicityDays.values,
+        authState.userData.id
       );
       showMessage({
         message: "Tu reto se ha creado correctamente",

@@ -16,10 +16,11 @@ export const setChallengeService = async (
   description,
   time,
   category,
-  periodicity
+  periodicity,
+  userId
 ) => {
   const newChallengeRef = doc(collection(db, "challenges"));
-
+  console.log("userId: ", userId);
   const docData = {
     title: title.value,
     category: category.value,
@@ -28,6 +29,7 @@ export const setChallengeService = async (
     time: time.value,
     startDate: getStartDate(),
     endDate: getEndDate(time.value),
+    userId,
   };
   await setDoc(newChallengeRef, docData);
 

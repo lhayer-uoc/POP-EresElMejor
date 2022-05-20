@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import { HomeWelcome } from "app/widgets/home/HomeWelcome/HomeWelcome";
 import { HomeBackground } from "app/widgets/home/HomeBackground/HomeBackground";
@@ -29,14 +29,18 @@ const Home = (props) => {
   };
 
   const handleLastChallenge = async () => {
-    const challenge = await getLastChallengeService();
-    setLastChallenge(challenge);
+    try {
+      const challenge = await getLastChallengeService(authState.userData.id);
+      setLastChallenge(challenge);
+    } catch (error) {
+      console.log("error handleLastChallenge: ", error);
+    }
   };
 
   useFocusEffect(
     useCallback(() => {
-      handleLastChallenge();
-    }, [])
+      if (authState.userData?.id) handleLastChallenge();
+    }, [authState])
   );
 
   return (
