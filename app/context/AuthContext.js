@@ -14,6 +14,7 @@ import { StackActions } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import dbUserToDto from "./dto/dbUserToDto";
 
+
 export const authInitialState = {
   isLoggedIn: false,
   userData: undefined,
@@ -65,9 +66,12 @@ export const AuthProvider = ({ children }) => {
         formData.email.value,
         formData.password.value
       );
+      /*
       await UpdateUserProfile(registerResponse.user, {
-        displayName: formData.name.value,
+        displayName: formData.name.value
       });
+      */
+      await UpdateUserProfile(registerResponse.user.providerData, formData );
 
       const isLogged = auth.currentUser;
       if (isLogged) {
@@ -86,23 +90,24 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const UpdateUserProfile = async (userData) => {
+  const UpdateUserProfile = async (userData, formData) => {
+    
     const profileData = {};
-    for (let field in userData) {
-      profileData[field] = userData[field].value;
+    for (let field in formData) {
+      profileData[field] = formData[field].value;
     }
     setIsLoading(true);
     try {
       await updateProfile(auth.currentUser, {
-        displayName: profileData.name,
+        displayName: formData.name.value, photoURL: formData.avatar.value
       });
-      await updateEmail(auth.currentUser, profileData.email);
+      await updateEmail(auth.currentUser, userData.email);
       setAuthState(() => ({
         isLoggedIn: true,
         userData: {
           ...profileData,
         },
-      }));
+      })); 
       showMessage({
         message: "Tus cambios se han guardado",
         type: "success",

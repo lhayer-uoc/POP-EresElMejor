@@ -22,7 +22,6 @@ export const useForm = () => {
 	const onBlur = field => {
 		const fieldName = state[field];
 		if (!fieldName.validation || !fieldName.validation.length) return;
-
 		fieldName.validation.forEach(validation => {
 			const validValue = validation(fieldName.value);
 			if (validValue?.message) {
@@ -78,6 +77,16 @@ export const useForm = () => {
 			},
 		});
 	};
+	const onChangeAvatar =(value, field)=>{
+		setState({
+			...state,
+			[field]:{
+				...state[field],
+				value,
+				isValid: true
+			},
+		});
+	}
 
 	const getFormData = () => state;
 
@@ -100,6 +109,7 @@ export const useForm = () => {
 		onBlur,
 		onChange,
 		onChangeSelect,
+		onChangeAvatar,
 		validateForm,
 		validForm,
 		getFormData,

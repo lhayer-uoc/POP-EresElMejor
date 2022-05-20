@@ -1,23 +1,22 @@
-import { doc, setDoc, collection, Timestamp, updateDoc } from 'firebase/firestore';
-import { db } from '../config/db';
+import { auth } from '../config/db';
+import {
+    updateProfile,
+} from "firebase/auth";
+import { showMessage } from "react-native-flash-message";
 
-const getStartDate = () => {
-    return Timestamp.fromDate(new Date()).toDate();
-};
+export const setAvatarService = async (image) => {
 
-export const setAvatarService = (image, user) => {
-    const docRef = doc(collection(db, "avatar"));
-    const docData = {
-        image: image,
-        user: user,
-        date: getStartDate(),
-    }
     try {
-        setDoc(docRef, docData);
-        console.log("datos introducidos");
+        await updateProfile(auth.currentUser, {
+            photoURL: image
+        });
+
+        showMessage({
+            message: "Tus cambios se han guardado",
+            type: "success",
+        });
     } catch (error) {
-        console.log("no se han introducido los datos");
-        return false;
+        console.log("error: ", error);
     }
 
-}
+};

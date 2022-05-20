@@ -15,14 +15,14 @@ import { useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
 import { getAuth } from "firebase/auth";
 
+
 const Home = (props) => {
   const [lastChallenge, setLastChallenge] = useState(null);
   const { authState } = useAuth();
   const auth= getAuth();
   const user = auth.currentUser;
   const uid = user.uid;
-
-
+ 
   const navigateToChallengeList = () => {
     props.navigation.navigate("Retos");
   };
@@ -49,11 +49,10 @@ const Home = (props) => {
       <View style={homeStyles.screenContainer}>
         <View style={homeStyles.wellcomeBlock}>
           <HomeBackground
-            user ={authState.userData?.email}
+            user ={uid}
           />
           <View style={homeStyles.wellcomeMessage}>
             <HomeWelcome
-              user={uid}
               name={authState.userData?.name}
               />
           </View>

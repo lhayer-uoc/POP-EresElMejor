@@ -1,23 +1,41 @@
-import { doc, setDoc, collection, Timestamp } from 'firebase/firestore';
+import { doc, setDoc, collection, Timestamp, query, getDoc, where, getDocs, limit, updateDoc } from 'firebase/firestore';
 import { db } from '../config/db';
 
-const getStartDate = () => {
-    return Timestamp.fromDate(new Date()).toDate();
-};
+export const setBackgroundService = async (image, userid) => {
 
-export const setBackgroundService = (image, user) => {
-    const docRef = doc(collection(db, "background"));
-    const docData = {
-        image: image,
-        user: user,
-        date: getStartDate(),
-    }
+    const collectionRef = collection(db, "users");
+    const q = query(collectionRef, where("user", "==", userid), limit(1));
+
     try {
-        setDoc(docRef, docData);
-        console.log("datos introducidos");
+        const querySnapshot = await getDocs(q);
+        let idDocument = "";
+        querySnapshot.forEach((doc) => {
+            idDocument = { id: doc.id };
+        });
+        console.log(idDocument.length);
+        if (idDocument.length !== 0) {
+            try {
+                const docRef = doc(db, "users", idDocument.id)
+                await updateDoc(docRef, {
+                    image: image
+                });
+            } catch (error) {
+                console.log(error);
+            }
+        } else {
+            const docData = {
+                image: image,
+                user: userid,
+            }
+            const UserRef = doc(collection(db, "users"));
+            try {
+                setDoc(UserRef, docData);
+            } catch (error) {
+                console.log(error);
+                return false;
+            }
+        }
     } catch (error) {
-        console.log("no se han introducido los datos");
-        return false;
+        console.log("Ha ocurrido un error: ", error);
     }
-
 }

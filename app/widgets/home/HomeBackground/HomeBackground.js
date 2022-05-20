@@ -8,7 +8,7 @@ import { getBackgroundService } from "../../../services/getBackground";
 import { useFocusEffect } from "@react-navigation/native";
 
 
-export const HomeBackground = (user) => {
+export const HomeBackground = (userid) => {
 
   const [image, setImage] = useState();
   const [userimage, setuserimage] = useState([""]);
@@ -16,11 +16,11 @@ export const HomeBackground = (user) => {
   const changeBackGround = async () => {
     const result = await loadImageFromGallery([1, 1]);
     setImage(result.image);
-    setBackgroundService(result.image, user.user);
+    setBackgroundService(result.image, userid.user);
   };
 
   const handleBackground = async () => {
-    const userimage = await getBackgroundService(user.user);
+    const userimage = await getBackgroundService(userid.user);
     setuserimage(userimage);
   }
 
