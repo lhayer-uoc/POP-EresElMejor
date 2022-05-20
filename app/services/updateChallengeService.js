@@ -7,7 +7,12 @@ export const updateChallengeNotifications = async (
   id
 ) => {
   const challengeRef = doc(db, "challenges", id);
-  return await updateDoc(challengeRef, {
-    notificationsIds: arrayUnion({ weekday, notificationId }),
-  });
+  try {
+    const response = await updateDoc(challengeRef, {
+      notificationsIds: arrayUnion({ weekday, notificationId }),
+    });
+    return response;
+  } catch (error) {
+    return null;
+  }
 };

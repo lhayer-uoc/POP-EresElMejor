@@ -10,6 +10,7 @@ import {
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
 import { updateChallengeNotifications } from "../services/updateChallengeService";
+import { deleteChallengeNotifications } from "../services/deleteChallengeNotificationsService";
 
 setNotificationHandler({
   handleNotification: async () => ({
@@ -26,12 +27,16 @@ const usePushNotifications = (onTapNotification) => {
 
   const handleConfigNotifications = async () => {
     if (Platform.OS === "android") {
-      await setNotificationChannelAsync("default", {
-        name: "default",
-        importance: AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: "#FF231F7C",
-      });
+      try {
+        await setNotificationChannelAsync("default", {
+          name: "default",
+          importance: AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: "#FF231F7C",
+        });
+      } catch (error) {
+        handleConfigNotifications();
+      }
     }
   };
 
@@ -61,6 +66,8 @@ const usePushNotifications = (onTapNotification) => {
 // HOOK for handle notifications, create and cancel
 export const useHandleNotifications = () => {
   const [error, setError] = useState(null);
+  const [isLoading, setIsloading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const createTestNotification = async (challengeInfo) => {
     const data = {
@@ -83,6 +90,7 @@ export const useHandleNotifications = () => {
 
   const createNotifications = async ({ periodicity, challengeInfo }, token) => {
     try {
+      setIsloading(true);
       await Promise.all(
         periodicity.map(async (day) => {
           const data = {
@@ -94,19 +102,22 @@ export const useHandleNotifications = () => {
               repeats: true,
             },
           };
-          const identifier = await schedulePushNotification(data, token);
+          const identifier = await schedulePushNotification(data);
           await updateChallengeNotifications(day, identifier, challengeInfo.id);
         })
       );
       if (error) {
         setError(null);
       }
+      setIsloading(false);
+      setSuccess(true);
     } catch (error) {
-      console.log("error: ", error);
       setError({
         message: "No se ha podido crear la notificación, vuelve a intentarlo",
         data: { ...{ periodicity, challengeInfo }, token },
       });
+      setIsloading(false);
+      setSuccess(false);
     }
   };
 
@@ -126,25 +137,30 @@ export const useHandleNotifications = () => {
     return identifier;
   };
 
-  const cancelPushNotifications = async (notifications) => {
+  const cancelPushNotifications = async (notifications, id) => {
     try {
+      setIsloading(true);
       await Promise.all(
         notifications.map(async (notification) => {
           await Notifications.cancelScheduledNotificationAsync(
             notification.notificationId
           );
+          await deleteChallengeNotifications(id);
         })
       );
-      //TODO: borrar las notificationsIds de ese reto
-
       if (error) {
         setError(null);
       }
+      setIsloading(false);
+      setSuccess(true);
     } catch (error) {
+      console.log("error: ", error);
       setError({
         message:
           "No se han podido cancelar las notificación, vuelve a intentarlo",
       });
+      setIsloading(false);
+      setSuccess(false);
     }
   };
 
@@ -152,6 +168,8 @@ export const useHandleNotifications = () => {
     createNotifications,
     createTestNotification,
     cancelPushNotifications,
+    onSuccess: success,
+    isLoading,
     error,
   };
 };

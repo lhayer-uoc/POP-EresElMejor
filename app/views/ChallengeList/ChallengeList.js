@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Container from "widgets/shared/Container/Container";
 import { View } from "react-native";
 
