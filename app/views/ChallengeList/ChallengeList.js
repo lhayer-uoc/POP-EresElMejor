@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Container from "widgets/shared/Container/Container";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 import { challengeListStyles } from "./ChallengeListStyles";
 import List from "app/widgets/shared/List/List";
@@ -60,14 +60,25 @@ const ChallengeList = (props) => {
 
   return (
     <Container>
-      <View style={challengeListStyles.container}>
-        <List
-          data={challenges}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          extraData={selectedId}
-          style={challengeListStyles.list}
-        />
+      <View
+        style={[
+          challengeListStyles.container,
+          !challenges || !challenges?.length
+            ? challengeListStyles.noChallenges
+            : "",
+        ]}
+      >
+        {challenges && challenges.length !== 0 ? (
+          <List
+            data={challenges}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedId}
+            style={challengeListStyles.list}
+          />
+        ) : (
+          <Text>No hay Retos disponibles</Text>
+        )}
       </View>
     </Container>
   );

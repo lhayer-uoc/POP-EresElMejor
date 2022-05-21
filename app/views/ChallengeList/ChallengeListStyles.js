@@ -18,4 +18,9 @@ export const challengeListStyles = StyleSheet.create({
     backgroundColor: "white",
     margin: 3,
   },
+  noChallenges: {
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
