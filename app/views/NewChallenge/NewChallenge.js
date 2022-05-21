@@ -19,6 +19,10 @@ import { useState } from "react";
 import { getCategoriesService } from "../../services/getCategoriesService";
 import PeriodicityInput from "../../widgets/shared/PeriodicityInput/PeriodicityInput";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
+import { useAuth } from "../../context/AuthContext";
+import { useHandleNotifications } from "../../hooks/useNotification";
+import CustomButton from "../../widgets/shared/Button/CustomButton";
+import { auth } from "../../config/db";
 
 const NewChallenge = ({ navigation }) => {
   const [categories, setCategories] = useState([]);
@@ -27,11 +31,12 @@ const NewChallenge = ({ navigation }) => {
     errorMessage: "",
   });
   const isKeyboardShown = useKeyboardStatus();
+  const { authState } = useAuth();
+  const { createNotifications, error } = useHandleNotifications();
 
   const {
     title,
     description,
-    periodicity,
     time,
     category,
     onChange,
@@ -59,17 +64,30 @@ const NewChallenge = ({ navigation }) => {
     }
 
     try {
-      await setChallengeService(
+      const newChallenge = await setChallengeService(
         title,
         description,
         time,
         category,
-        periodicityDays.values
+        periodicityDays.values,
+        authState.userData.id
       );
       showMessage({
         message: "Tu reto se ha creado correctamente",
         type: "success",
       });
+
+      // Programamos notificaciones según la prioricidad
+      await createNotifications(
+        {
+          periodicity: periodicityDays.values,
+          challengeInfo: {
+            id: newChallenge,
+            title: title.value,
+          },
+        },
+        authState.userData.token
+      );
       resetForm();
       navigation.navigate("Retos");
     } catch (error) {
@@ -173,6 +191,20 @@ const NewChallenge = ({ navigation }) => {
             >
               <Text style={newChallengeStyles.textButton}> Guardar reto</Text>
             </TouchableOpacity>
+          )}
+          {error && (
+            <View style={newChallengeStyles.notificationError}>
+              <Text>No se ha podido crear las notificaciones </Text>
+              <TouchableOpacity>
+                <CustomButton
+                  title="Generar notificaciones"
+                  style={newChallengeStyles.notificationErrorButton}
+                  action={() => {
+                    createNotifications(error.data);
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
           )}
         </View>
       </ScrollView>

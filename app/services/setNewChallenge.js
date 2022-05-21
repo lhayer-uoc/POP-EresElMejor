@@ -11,15 +11,16 @@ const getStartDate = () => {
   return Timestamp.fromDate(new Date()).toDate();
 };
 
-export const setChallengeService = (
+export const setChallengeService = async (
   title,
   description,
   time,
   category,
-  periodicity
+  periodicity,
+  userId
 ) => {
   const newChallengeRef = doc(collection(db, "challenges"));
-
+  console.log("userId: ", userId);
   const docData = {
     title: title.value,
     category: category.value,
@@ -28,6 +29,9 @@ export const setChallengeService = (
     time: time.value,
     startDate: getStartDate(),
     endDate: getEndDate(time.value),
+    userId,
   };
-  return setDoc(newChallengeRef, docData);
+  await setDoc(newChallengeRef, docData);
+
+  return newChallengeRef.id;
 };
