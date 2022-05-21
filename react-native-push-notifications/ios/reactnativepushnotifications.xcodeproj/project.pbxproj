@@ -315,8 +315,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "android.app";
-				PRODUCT_NAME = package;
+				PRODUCT_BUNDLE_IDENTIFIER = org.name.reactnativepushnotifications;
+				PRODUCT_NAME = reactnativepushnotifications;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -338,8 +338,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "android.app";
-				PRODUCT_NAME = package;
+				PRODUCT_BUNDLE_IDENTIFIER = org.name.reactnativepushnotifications;
+				PRODUCT_NAME = reactnativepushnotifications;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
