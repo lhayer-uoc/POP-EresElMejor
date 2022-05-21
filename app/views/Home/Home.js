@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { HomeWelcome } from "app/widgets/home/HomeWelcome/HomeWelcome";
 import { HomeBackground } from "app/widgets/home/HomeBackground/HomeBackground";
@@ -43,6 +43,10 @@ const Home = (props) => {
     }, [authState])
   );
 
+  useEffect(() => {
+    console.log("lastChallenge: ", lastChallenge);
+  }, [lastChallenge]);
+
   return (
     <Container negativeSpacing={true}>
       <View style={homeStyles.screenContainer}>
@@ -52,20 +56,22 @@ const Home = (props) => {
             <HomeWelcome name={authState.userData?.name} />
           </View>
         </View>
-        <View style={homeStyles.lastChallengeBlock}>
-          <ChallengeCard
-            {...lastChallenge}
-            heading1="Último reto"
-            heading2={lastChallenge?.title}
-            onPress={() => navigateToChallenge({ ...lastChallenge })}
-          />
-          <CustomButton
-            title={"Ver todos tus retos"}
-            action={navigateToChallengeList}
-          >
-            <RocketSvg width={16} height={16} fill="#FFF" />
-          </CustomButton>
-        </View>
+        {lastChallenge && (
+          <View style={homeStyles.lastChallengeBlock}>
+            <ChallengeCard
+              {...lastChallenge}
+              heading1="Último reto"
+              heading2={lastChallenge?.title}
+              onPress={() => navigateToChallenge({ ...lastChallenge })}
+            />
+            <CustomButton
+              title={"Ver todos tus retos"}
+              action={navigateToChallengeList}
+            >
+              <RocketSvg width={16} height={16} fill="#FFF" />
+            </CustomButton>
+          </View>
+        )}
       </View>
     </Container>
   );
