@@ -1,7 +1,5 @@
 import {
   collection,
-  doc,
-  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -25,7 +23,10 @@ export const getLastChallengeService = async (id) => {
     querySnapshot.forEach((docSnap) => {
       lastChallenge = { id: docSnap.id, ...docSnap.data() };
     });
-    return challengeToDto(lastChallenge);
+    if (lastChallenge?.endDate) {
+      return challengeToDto(lastChallenge);
+    }
+    return false;
   } catch (error) {
     console.log("error: ", error);
     return false;
