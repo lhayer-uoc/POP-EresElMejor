@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
 	View,
 	Text,
@@ -49,6 +49,7 @@ const NewChallenge = ({ navigation }) => {
 
 	const handleSubmitForm = async () => {
 		setIsLoading(true);
+
 		if (!periodicityDays.values.length) {
 			setPeriodicityDays({
 				...periodicityDays,
@@ -114,6 +115,7 @@ const NewChallenge = ({ navigation }) => {
 
 	useFocusEffect(
 		useCallback(() => {
+			setIsLoading(false);
 			handleChangeSelect();
 		}, [])
 	);
