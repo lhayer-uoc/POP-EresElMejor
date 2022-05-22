@@ -68,9 +68,7 @@ export const AuthProvider = ({ children }) => {
         formData.password.value
       );
 
-      await updateProfile(createUser.user, {
-        displayName: formData.name.value,
-      });
+      await UpdateUserProfile(createUser.user, formData);
 
       const token = await generatePushNotificationsToken();
       await setUserExtraProfile({ notificationToken: token }, createUser.user);
@@ -92,23 +90,20 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const UpdateUserProfile = async (userData) => {
+  const UpdateUserProfile = async (formData) => {
     const profileData = {};
-
-    for (let field in userData) {
-      profileData[field] = userData[field];
+    for (let field in formData) {
+      profileData[field] = formData[field]?.value;
     }
 
     setIsLoading(true);
 
     try {
       await updateProfile(auth.currentUser, {
-        displayName: profileData.name,
+        displayName: formData.name.value,
       });
-      await updateEmail(auth.currentUser, profileData.email);
-
-      setAuthState(dbUserToDto(profileData));
-
+      await updateEmail(auth.currentUser, formData.email.value);
+      setAuthState(dbUserToDto({ ...authState.userData, ...profileData }));
       showMessage({
         message: "Tus cambios se han guardado",
         type: "success",
@@ -117,6 +112,24 @@ export const AuthProvider = ({ children }) => {
       console.log("error: ", error);
     }
     setIsLoading(false);
+  };
+
+  const UpdateAvatar = async (avatar) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        photoURL: avatar,
+      });
+      setAuthState({
+        ...authState,
+        userData: {
+          ...authState.userData,
+          avatar,
+        },
+      });
+    } catch (error) {
+      console.log("error: ", error);
+      return false;
+    }
   };
 
   const handleSetAuthState = async (user) => {
@@ -146,6 +159,7 @@ export const AuthProvider = ({ children }) => {
         Login,
         Register,
         UpdateUserProfile,
+        UpdateAvatar,
         Logout,
         isLoading,
       }}

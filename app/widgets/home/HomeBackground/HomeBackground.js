@@ -1,21 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { TouchableOpacity, View, Image } from "react-native";
 import { loadImageFromGallery } from "app/utils/imageUtil";
 import { stylesHomeBackground } from "./HomeBackgrounStyles";
 import PlusIcon from "assets/plus.svg";
+import { setBackgroundService } from "../../../services/setBackground";
+import { getBackgroundService } from "../../../services/getBackground";
+import { useFocusEffect } from "@react-navigation/native";
 
-export const HomeBackground = () => {
+export const HomeBackground = (userId) => {
   const [image, setImage] = useState();
+  const [userimage, setuserimage] = useState([""]);
 
   const changeBackGround = async () => {
-    //array como parametro las dimensiones de la imagen
     const result = await loadImageFromGallery([1, 1]);
     setImage(result.image);
+    setBackgroundService(result.image, userId);
   };
+
+  const handleBackground = async () => {
+    const userimage = await getBackgroundService(userId);
+    setuserimage(userimage);
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      handleBackground();
+    }, [image])
+  );
 
   return (
     <View style={stylesHomeBackground.container}>
-      <Image source={{ uri: image }} style={stylesHomeBackground.image} />
+      <Image
+        source={{ uri: userimage.image }}
+        style={stylesHomeBackground.image}
+      />
       <TouchableOpacity
         style={[
           stylesHomeBackground.button,

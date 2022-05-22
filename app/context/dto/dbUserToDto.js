@@ -5,6 +5,7 @@ const dbUserToDto = (user) => {
       id: user.uid,
       name: user.displayName,
       email: user.email,
+      avatar: user.photoURL,
       token: user.notificationToken,
     },
   };

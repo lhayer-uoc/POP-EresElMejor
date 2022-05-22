@@ -13,10 +13,14 @@ import { getLastChallengeService } from "../../services/getLastChallengeService"
 import { useAuth } from "../../context/AuthContext";
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback } from "react";
+import { getAuth } from "firebase/auth";
 
 const Home = (props) => {
   const [lastChallenge, setLastChallenge] = useState(null);
   const { authState } = useAuth();
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const uid = user?.uid;
 
   const navigateToChallengeList = () => {
     props.navigation.navigate("Retos");
@@ -39,19 +43,17 @@ const Home = (props) => {
 
   useFocusEffect(
     useCallback(() => {
-      if (authState.userData?.id) handleLastChallenge();
+      if (authState.userData?.id) {
+        handleLastChallenge();
+      }
     }, [authState])
   );
-
-  useEffect(() => {
-    console.log("lastChallenge: ", lastChallenge);
-  }, [lastChallenge]);
 
   return (
     <Container negativeSpacing={true}>
       <View style={homeStyles.screenContainer}>
         <View style={homeStyles.wellcomeBlock}>
-          <HomeBackground />
+          <HomeBackground userId={uid} />
           <View style={homeStyles.wellcomeMessage}>
             <HomeWelcome name={authState.userData?.name} />
           </View>

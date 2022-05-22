@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { Image, Text, View, ScrollView, TouchableOpacity } from "react-native";
 import CircleProgressBar from "app/widgets/shared/CircleProgressBar/CircleProgressBar";
 import HeadingTextBlock from "app/widgets/shared/HeadingTextBlock/HeadingTextBlock";
 import { challengeDetailStyles } from "./ChallengeDetailStyles";
@@ -13,7 +13,6 @@ import { weekDays } from "../../utils/weekDays";
 import { useHandleNotifications } from "../../hooks/useNotification";
 import { useAuth } from "../../context/AuthContext";
 import { getChallengeDetailsService } from "../../services/getChallengesDetailsService";
-import { useFocusEffect } from "@react-navigation/native";
 
 const getPeriodictiyToDay = (day) => {
   let dayToDTO = weekDays.find((weekDay) => weekDay.value === day);
@@ -66,80 +65,88 @@ const ChallengeDetail = (props) => {
 
   return (
     <Container negativeSpacing={true} style={challengeDetailStyles.wrapper}>
-      <View style={challengeDetailStyles.container}>
-        <View style={challengeDetailStyles.hero}>
-          <View style={challengeDetailStyles.brief}>
-            <CircleProgressBar
-              style={challengeDetailStyles.circleProgressBar}
-              percentage={item?.percentage}
+      <ScrollView>
+        <View style={challengeDetailStyles.container}>
+          {!!item.image && (
+            <Image
+              source={{ uri: item.image }}
+              style={challengeDetailStyles.image}
             />
-            <HeadingTextBlock
-              style={challengeDetailStyles.challengeInfo}
-              heading1={item?.title}
-              heading2={item?.description}
-            />
-          </View>
-        </View>
-        <View style={challengeDetailStyles.contentDetails}>
-          <Text style={challengeDetailStyles.sectionTitle}>
-            Detalle del reto
-          </Text>
-
-          <View style={challengeDetailStyles.inputContainer}>
-            <Text style={challengeDetailStyles.label}>Categoría: </Text>
-            <View style={challengeDetailStyles.containerIcon}>
-              <IconCategory
-                category={challenge.category}
-                style={challengeDetailStyles.containerIcon_icon}
+          )}
+          <View style={challengeDetailStyles.hero}>
+            <View style={challengeDetailStyles.brief}>
+              <CircleProgressBar
+                style={challengeDetailStyles.circleProgressBar}
+                percentage={item?.percentage}
+              />
+              <HeadingTextBlock
+                style={challengeDetailStyles.challengeInfo}
+                heading1={item?.title}
+                heading2={item?.description}
               />
             </View>
           </View>
+          <View style={challengeDetailStyles.contentDetails}>
+            <Text style={challengeDetailStyles.sectionTitle}>
+              Detalle del reto
+            </Text>
 
-          <View style={challengeDetailStyles.inputContainer}>
-            <Text style={challengeDetailStyles.label}>Periodicidad: </Text>
-            <View style={challengeDetailStyles.weekWrapper}>
-              {challenge.periodicity.map((day) => (
-                <PeriodicityDay
-                  key={day}
-                  day={getPeriodictiyToDay(day)}
-                  styles={challengeDetailStyles.periodicityDay}
+            <View style={challengeDetailStyles.inputContainer}>
+              <Text style={challengeDetailStyles.label}>Categoría: </Text>
+              <View style={challengeDetailStyles.containerIcon}>
+                <IconCategory
+                  category={challenge.category}
+                  style={challengeDetailStyles.containerIcon_icon}
                 />
-              ))}
+              </View>
             </View>
-          </View>
 
-          <View style={challengeDetailStyles.inputContainer}>
-            <Text style={challengeDetailStyles.label}>Tiempo: </Text>
-            <Text>{challenge.time} días</Text>
-          </View>
-
-          {challenge.percentage !== 100 && (
-            <View style={challengeDetailStyles.notifications}>
-              <TouchableOpacity>
-                <CustomButton
-                  style={challengeDetailStyles.notifyButton}
-                  title={
-                    hasNotifications
-                      ? "Cancelar notificaciones"
-                      : "Crear notificaciones"
-                  }
-                  action={() =>
-                    hasNotifications
-                      ? handleCancelations()
-                      : handleCreateNotifications()
-                  }
-                >
-                  {hasNotifications ? (
-                    <CancelBell width={16} height={16} fill="#FFF" />
-                  ) : (
-                    <Bell width={16} height={16} fill="#FFF" />
-                  )}
-                </CustomButton>
-              </TouchableOpacity>
+            <View style={challengeDetailStyles.inputContainer}>
+              <Text style={challengeDetailStyles.label}>Periodicidad: </Text>
+              <View style={challengeDetailStyles.weekWrapper}>
+                {challenge.periodicity.map((day) => (
+                  <PeriodicityDay
+                    key={day}
+                    day={getPeriodictiyToDay(day)}
+                    styles={challengeDetailStyles.periodicityDay}
+                  />
+                ))}
+              </View>
             </View>
-          )}
+
+            <View style={challengeDetailStyles.inputContainer}>
+              <Text style={challengeDetailStyles.label}>Tiempo: </Text>
+              <Text>{challenge.time} días</Text>
+            </View>
+
+            {challenge.percentage !== 100 && (
+              <View style={challengeDetailStyles.notifications}>
+                <TouchableOpacity>
+                  <CustomButton
+                    style={challengeDetailStyles.notifyButton}
+                    title={
+                      hasNotifications
+                        ? "Cancelar notificaciones"
+                        : "Crear notificaciones"
+                    }
+                    action={() =>
+                      hasNotifications
+                        ? handleCancelations()
+                        : handleCreateNotifications()
+                    }
+                  >
+                    {hasNotifications ? (
+                      <CancelBell width={16} height={16} fill="#FFF" />
+                    ) : (
+                      <Bell width={16} height={16} fill="#FFF" />
+                    )}
+                  </CustomButton>
+                </TouchableOpacity>
+              </View>
+            )}
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </Container>
   );
 };

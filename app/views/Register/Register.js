@@ -5,7 +5,7 @@ import { View, Text } from "react-native";
 import CustomButton from "app/widgets/shared/Button/CustomButton";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { useForm } from "../../hooks/useForm";
-import { emailValidation, emptyField } from "../../utils/formValidations";
+import { emailValidation, emptyField, emptyPossibility } from "../../utils/formValidations";
 import { loadImageFromGallery } from "app/utils/imageUtil";
 import { registerStyles } from "./RegisterStyles";
 import { Avatar } from "react-native-elements";
@@ -13,19 +13,24 @@ import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const navigation = useNavigation();
-  const { Register, isLoading } = useAuth();
+  const { Register, isLoading } = useAuth("");
 
   const [image, setImage] = useState();
 
   const changeAvatar = async () => {
     const result = await loadImageFromGallery([1, 1]);
     setImage(result.image);
+    const value = result.image;
+    onBlur("avatar");
+    onChangeAvatar(value, "avatar");
   };
+
   const {
     email,
     password,
     name,
     onChange,
+    onChangeAvatar,
     onBlur,
     validForm,
     getFormData,
@@ -48,10 +53,13 @@ const Register = () => {
           value: "",
           validation: [emptyField],
         },
+        avatar: {
+          value: "",
+          validation: [emptyPossibility],
+        }
       });
     }
   });
-
   return (
     <Container style={registerStyles.container} negativeSpacing={false}>
       <View style={registerStyles.view}>

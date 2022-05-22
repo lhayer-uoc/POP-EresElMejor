@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import {
+  Image,
   View,
   Text,
   TouchableOpacity,
@@ -19,10 +20,11 @@ import { useState } from "react";
 import { getCategoriesService } from "../../services/getCategoriesService";
 import PeriodicityInput from "../../widgets/shared/PeriodicityInput/PeriodicityInput";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
+import { loadImageFromGallery } from "../../utils/imageUtil";
+import PlusIcon from "assets/plus.svg";
 import { useAuth } from "../../context/AuthContext";
 import { useHandleNotifications } from "../../hooks/useNotification";
 import CustomButton from "../../widgets/shared/Button/CustomButton";
-import { auth } from "../../config/db";
 
 const NewChallenge = ({ navigation }) => {
   const [categories, setCategories] = useState([]);
@@ -30,9 +32,15 @@ const NewChallenge = ({ navigation }) => {
     values: [],
     errorMessage: "",
   });
+  const [image, setImage] = useState("");
   const isKeyboardShown = useKeyboardStatus();
   const { authState } = useAuth();
   const { createNotifications, error } = useHandleNotifications();
+
+  const selectImage = async () => {
+    const result = await loadImageFromGallery([1, 1]);
+    setImage(result.image);
+  };
 
   const {
     title,
@@ -70,6 +78,7 @@ const NewChallenge = ({ navigation }) => {
         time,
         category,
         periodicityDays.values,
+        image,
         authState.userData.id
       );
       showMessage({
@@ -140,6 +149,26 @@ const NewChallenge = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView>
         <View style={newChallengeStyles.container}>
+          <View style={{ height: 250 }}>
+            <Image
+              source={{ uri: image }}
+              style={{ height: "100%", width: "100%" }}
+            />
+            <TouchableOpacity
+              style={[
+                newChallengeStyles.button2,
+                image ? newChallengeStyles.buttonOverlay : "",
+              ]}
+              onPress={selectImage}
+            >
+              <PlusIcon
+                fill="#000"
+                style={newChallengeStyles.plusIcon}
+                width="100%"
+                height="100%"
+              />
+            </TouchableOpacity>
+          </View>
           <CustomInput
             placeholder="Escribe el nombre del reto"
             label="Titulo"
