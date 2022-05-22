@@ -22,5 +22,6 @@ export const challengeToDto = (data) => {
     time: data.time ?? 0,
     category: data.category,
     image: data.image ?? "",
+    notifications: data.notificationsIds,
   };
 };

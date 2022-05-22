@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import { HomeWelcome } from "app/widgets/home/HomeWelcome/HomeWelcome";
 import { HomeBackground } from "app/widgets/home/HomeBackground/HomeBackground";
@@ -33,14 +33,20 @@ const Home = (props) => {
   };
 
   const handleLastChallenge = async () => {
-    const challenge = await getLastChallengeService();
-    setLastChallenge(challenge);
+    try {
+      const challenge = await getLastChallengeService(authState.userData.id);
+      setLastChallenge(challenge);
+    } catch (error) {
+      console.log("error handleLastChallenge: ", error);
+    }
   };
 
   useFocusEffect(
     useCallback(() => {
-      handleLastChallenge();
-    }, [])
+      if (authState.userData?.id) {
+        handleLastChallenge();
+      }
+    }, [authState])
   );
 
   return (
@@ -52,20 +58,22 @@ const Home = (props) => {
             <HomeWelcome name={authState.userData?.name} />
           </View>
         </View>
-        <View style={homeStyles.lastChallengeBlock}>
-          <ChallengeCard
-            {...lastChallenge}
-            heading1="Último reto"
-            heading2={lastChallenge?.title}
-            onPress={() => navigateToChallenge({ ...lastChallenge })}
-          />
-          <CustomButton
-            title={"Ver todos tus retos"}
-            action={navigateToChallengeList}
-          >
-            <RocketSvg width={16} height={16} fill="#FFF" />
-          </CustomButton>
-        </View>
+        {lastChallenge && (
+          <View style={homeStyles.lastChallengeBlock}>
+            <ChallengeCard
+              {...lastChallenge}
+              heading1="Último reto"
+              heading2={lastChallenge?.title}
+              onPress={() => navigateToChallenge({ ...lastChallenge })}
+            />
+            <CustomButton
+              title={"Ver todos tus retos"}
+              action={navigateToChallengeList}
+            >
+              <RocketSvg width={16} height={16} fill="#FFF" />
+            </CustomButton>
+          </View>
+        )}
       </View>
     </Container>
   );

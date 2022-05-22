@@ -12,6 +12,9 @@ import { auth } from "../config/db";
 import { useNavigation } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import dbUserToDto from "./dto/dbUserToDto";
+import generatePushNotificationsToken from "../utils/notifications";
+import { setUserExtraProfile } from "../services/setUserExtraProfile";
+import { getExtraProfileService } from "../services/getExtraProfileService";
 
 export const authInitialState = {
   isLoggedIn: false,
@@ -33,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
       if (!authState.userData) {
-        setAuthState(dbUserToDto(auth.currentUser));
+        setAuthState(dbUserToDto({ id: auth.uid, ...auth.currentUser }));
       }
       goToHome();
     } catch (error) {
@@ -59,21 +62,20 @@ export const AuthProvider = ({ children }) => {
   const Register = async (formData) => {
     setIsLoading(true);
     try {
-      const registerResponse = await createUserWithEmailAndPassword(
+      const createUser = await createUserWithEmailAndPassword(
         auth,
         formData.email.value,
         formData.password.value
       );
-      /*
-      await UpdateUserProfile(registerResponse.user, {
-        displayName: formData.name.value
-      });
-      */
-      await UpdateUserProfile(registerResponse.user, formData);
+
+      await UpdateUserProfile(createUser.user, formData);
+
+      const token = await generatePushNotificationsToken();
+      await setUserExtraProfile({ notificationToken: token }, createUser.user);
 
       const isLogged = auth.currentUser;
       if (isLogged) {
-        setAuthState(dbUserToDto(auth.currentUser));
+        setAuthState(dbUserToDto({ id: auth.uid, ...auth.currentUser }));
         goToHome();
       } else {
         navigation.navigate("Login");
@@ -90,23 +92,18 @@ export const AuthProvider = ({ children }) => {
 
   const UpdateUserProfile = async (formData) => {
     const profileData = {};
-    console.log("formData: ", formData);
     for (let field in formData) {
       profileData[field] = formData[field]?.value;
     }
+
     setIsLoading(true);
+
     try {
       await updateProfile(auth.currentUser, {
         displayName: formData.name.value,
       });
       await updateEmail(auth.currentUser, formData.email.value);
-      setAuthState(() => ({
-        isLoggedIn: true,
-        userData: {
-          ...authState.userData,
-          ...profileData,
-        },
-      }));
+      setAuthState(dbUserToDto({ ...authState.userData, ...profileData }));
       showMessage({
         message: "Tus cambios se han guardado",
         type: "success",
@@ -135,6 +132,12 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const handleSetAuthState = async (user) => {
+    const extraInfo = await getExtraProfileService(user);
+    const data = { ...user, ...extraInfo };
+    setAuthState(dbUserToDto(data));
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -142,8 +145,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
       goToHome();
-      console.log("user: ", user);
-      setAuthState(dbUserToDto(user));
+      handleSetAuthState({ id: auth.uid, ...user });
     });
     unsubscribe();
 
