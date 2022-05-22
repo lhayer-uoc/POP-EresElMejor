@@ -10,10 +10,8 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { auth } from "../config/db";
 import { useNavigation } from "@react-navigation/native";
-import { StackActions } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import dbUserToDto from "./dto/dbUserToDto";
-
 
 export const authInitialState = {
   isLoggedIn: false,
@@ -71,7 +69,7 @@ export const AuthProvider = ({ children }) => {
         displayName: formData.name.value
       });
       */
-      await UpdateUserProfile(registerResponse.user.providerData, formData );
+      await UpdateUserProfile(registerResponse.user, formData);
 
       const isLogged = auth.currentUser;
       if (isLogged) {
@@ -90,24 +88,25 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const UpdateUserProfile = async (userData, formData) => {
-    
+  const UpdateUserProfile = async (formData) => {
     const profileData = {};
+    console.log("formData: ", formData);
     for (let field in formData) {
-      profileData[field] = formData[field].value;
+      profileData[field] = formData[field]?.value;
     }
     setIsLoading(true);
     try {
       await updateProfile(auth.currentUser, {
-        displayName: formData.name.value, photoURL: formData.avatar.value
+        displayName: formData.name.value,
       });
-      await updateEmail(auth.currentUser, userData.email);
+      await updateEmail(auth.currentUser, formData.email.value);
       setAuthState(() => ({
         isLoggedIn: true,
         userData: {
+          ...authState.userData,
           ...profileData,
         },
-      })); 
+      }));
       showMessage({
         message: "Tus cambios se han guardado",
         type: "success",
@@ -118,6 +117,24 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const UpdateAvatar = async (avatar) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        photoURL: avatar,
+      });
+      setAuthState({
+        ...authState,
+        userData: {
+          ...authState.userData,
+          avatar,
+        },
+      });
+    } catch (error) {
+      console.log("error: ", error);
+      return false;
+    }
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -125,6 +142,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
       goToHome();
+      console.log("user: ", user);
       setAuthState(dbUserToDto(user));
     });
     unsubscribe();
@@ -139,6 +157,7 @@ export const AuthProvider = ({ children }) => {
         Login,
         Register,
         UpdateUserProfile,
+        UpdateAvatar,
         Logout,
         isLoading,
       }}

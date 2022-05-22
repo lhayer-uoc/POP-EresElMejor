@@ -18,10 +18,9 @@ export const setChallengeService = (
   time,
   category,
   periodicity,
-  image,
-  userid
+  image
 ) => {
-  const uid = auth.currentUser.uid
+  const uid = auth.currentUser.uid;
   const newChallengeRef = doc(collection(db, "challenges"));
 
   const docData = {
@@ -33,7 +32,7 @@ export const setChallengeService = (
     startDate: getStartDate(),
     endDate: getEndDate(time.value),
     image: image,
-    userid: uid
+    userId: uid,
   };
   return setDoc(newChallengeRef, docData);
 };

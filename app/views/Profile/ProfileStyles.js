@@ -8,4 +8,9 @@ export const profileStyles = StyleSheet.create({
   logoutButton: {
     marginTop: 60,
   },
+  avatar: {
+    display: "flex",
+    alignItems: "center",
+    marginVertical: 15,
+  },
 });
