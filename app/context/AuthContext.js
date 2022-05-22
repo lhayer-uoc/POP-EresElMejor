@@ -68,7 +68,7 @@ export const AuthProvider = ({ children }) => {
         formData.password.value
       );
 
-      await UpdateUserProfile(createUser.user, formData);
+      await UpdateUserProfile(formData);
 
       const token = await generatePushNotificationsToken();
       await setUserExtraProfile({ notificationToken: token }, createUser.user);
@@ -98,12 +98,28 @@ export const AuthProvider = ({ children }) => {
 
     setIsLoading(true);
 
+    let updateData = {
+      displayName: formData.name.value,
+    };
+
+    if (!!profileData?.avatar) {
+      updateData["photoURL"] = profileData.avatar;
+    }
+
     try {
       await updateProfile(auth.currentUser, {
-        displayName: formData.name.value,
+        ...updateData,
       });
+
       await updateEmail(auth.currentUser, formData.email.value);
-      setAuthState(dbUserToDto({ ...authState.userData, ...profileData }));
+
+      setAuthState({
+        ...authState,
+        userData: {
+          ...authState.userData,
+          ...profileData,
+        },
+      });
       showMessage({
         message: "Tus cambios se han guardado",
         type: "success",

@@ -5,7 +5,11 @@ import { View, Text } from "react-native";
 import CustomButton from "app/widgets/shared/Button/CustomButton";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { useForm } from "../../hooks/useForm";
-import { emailValidation, emptyField, emptyPossibility } from "../../utils/formValidations";
+import {
+  emailValidation,
+  emptyField,
+  emptyPossibility,
+} from "../../utils/formValidations";
 import { loadImageFromGallery } from "app/utils/imageUtil";
 import { registerStyles } from "./RegisterStyles";
 import { Avatar } from "react-native-elements";
@@ -13,7 +17,7 @@ import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const navigation = useNavigation();
-  const { Register, isLoading } = useAuth("");
+  const { Register: RegisterHook, isLoading } = useAuth();
 
   const [image, setImage] = useState();
 
@@ -56,7 +60,7 @@ const Register = () => {
         avatar: {
           value: "",
           validation: [emptyPossibility],
-        }
+        },
       });
     }
   });
@@ -102,8 +106,8 @@ const Register = () => {
         />
         <CustomButton
           title={"Registrarme"}
-          action={validForm ? () => Register(getFormData()) : null}
-          disable={!validForm}
+          action={validForm ? () => RegisterHook(getFormData()) : null}
+          disable={!validForm || isLoading}
           fullWidth
           loading={isLoading}
         />
