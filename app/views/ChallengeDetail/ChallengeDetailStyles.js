@@ -1,8 +1,24 @@
 import { StyleSheet } from "react-native";
 
 export const challengeDetailStyles = StyleSheet.create({
+  wrapper: {
+    marginTop: -20,
+  },
   container: {
     marginTop: 20,
+    marginBottom: "110%"
+  },
+  image:{
+    alignSelf:'center', 
+    height: "50%", 
+    width: "100%",
+    marginBottom: 20
+  },
+  contentDetails: {
+    padding: 20,
+  },
+  hero: {
+    backgroundColor: "white",
   },
   weekWrapper: {
     display: "flex",
@@ -17,14 +33,16 @@ export const challengeDetailStyles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "flex-start",
+    padding: 20,
   },
   circleProgressBar: {
     marginTop: 50,
   },
   challengeInfo: {
-    marginTop: 50,
-    width: "50%",
+    marginLeft: 20,
   },
+  notifyButton: {},
   sectionTitle: {
     fontSize: 24,
     marginLeft: 10,

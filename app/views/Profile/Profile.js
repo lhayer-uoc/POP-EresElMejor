@@ -1,6 +1,8 @@
 import { useFocusEffect } from "@react-navigation/native";
 import React from "react";
+import { loadImageFromGallery } from "app/utils/imageUtil";
 import { View } from "react-native";
+import { Avatar } from "react-native-elements/dist/avatar/Avatar";
 import Container from "widgets/shared/Container/Container";
 import { useAuth } from "../../context/AuthContext";
 import { useForm } from "../../hooks/useForm";
@@ -8,9 +10,11 @@ import { emailValidation, emptyField } from "../../utils/formValidations";
 import CustomButton from "../../widgets/shared/Button/CustomButton";
 import CustomInput from "../../widgets/shared/CustomInput/CustomInput";
 import { profileStyles } from "./ProfileStyles";
+import { showMessage } from "react-native-flash-message";
 
 const Profile = () => {
-  const { authState, isLoading, UpdateUserProfile, Logout } = useAuth();
+  const { authState, isLoading, UpdateUserProfile, Logout, UpdateAvatar } =
+    useAuth();
   const {
     email,
     name,
@@ -27,6 +31,23 @@ const Profile = () => {
       await UpdateUserProfile({ ...getFormData() });
     } catch (error) {
       console.log("error: ", error);
+    }
+  };
+
+  const changeAvatar = async () => {
+    try {
+      const imageResponse = await loadImageFromGallery([1, 1]);
+      await UpdateAvatar(imageResponse.image);
+      showMessage({
+        message: "Tus Avatar se ha guardado",
+        type: "success",
+      });
+    } catch (error) {
+      console.log("error: ", error);
+      showMessage({
+        message: "No se ha podido actualizar tu imagen, vuelve a intentarlo",
+        type: "error",
+      });
     }
   };
 
@@ -50,16 +71,14 @@ const Profile = () => {
   return (
     <Container>
       <View style={profileStyles.view}>
-        {/* <View>
+        <View style={profileStyles.avatar}>
           <Avatar
             rounded
             size={100}
-            containerStyle={profileStyles.avatar}
-            source={{ uri: image }}
+            source={{ uri: authState.userData?.avatar }}
             onPress={changeAvatar}
           />
-          <Text style={profileStyles.avatarLabel}>Añadir Foto</Text>
-        </View> */}
+        </View>
         <CustomInput
           placeholder="Escribe tu nombre"
           label="Name"

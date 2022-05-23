@@ -8,9 +8,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "platforms": [
-      "android"
-    ],
+    "platforms": ["android"],
     "sdkVersion": "44.0.0",
     "splash": {
       "image": "./assets/splash.png",
@@ -20,9 +18,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "android": {
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
@@ -35,13 +31,10 @@
         "READ_EXTERNAL_STORAGE",
         "WRITE_EXTERNAL_STORAGE"
       ],
-      "package": "android.app"
+      "package": "android.package"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "ios": {
-      "bundleIdentifier": "android.app"
     }
   },
   "plugins": [
