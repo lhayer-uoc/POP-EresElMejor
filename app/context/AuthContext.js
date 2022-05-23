@@ -160,7 +160,6 @@ export const AuthProvider = ({ children }) => {
 
   const handleSetAuthState = async (user) => {
     const extraInfo = await getExtraProfileService(user);
-    console.log("extraInfo: ", extraInfo);
     const data = { ...user, ...extraInfo };
     setAuthState(dbUserToDto(data));
   };

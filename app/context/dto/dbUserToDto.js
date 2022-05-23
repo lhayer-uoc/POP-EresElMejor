@@ -1,5 +1,4 @@
 const dbUserToDto = (user) => {
-  console.log("user: ", user);
   return {
     isLoggedIn: true,
     userData: {
