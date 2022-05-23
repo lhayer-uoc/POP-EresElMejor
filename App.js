@@ -9,8 +9,6 @@ function App() {
   LogBox.ignoreLogs(["Setting a timer for a long period of time"]);
   const { notification } = usePushNotifications();
 
-  console.log("notification: ", notification);
-
   return (
     <SafeAreaProvider>
       <FlashMessage position="top" floating={true} />

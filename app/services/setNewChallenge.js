@@ -1,5 +1,6 @@
 import { doc, setDoc, collection, Timestamp } from "firebase/firestore";
 import { db } from "../config/db";
+import { auth } from "../config/db";
 
 const getEndDate = (days) => {
   const finalDate = new Date(Date.now() + days * (1000 * 60 * 60 * 24));
@@ -11,15 +12,17 @@ const getStartDate = () => {
   return Timestamp.fromDate(new Date()).toDate();
 };
 
-export const setChallengeService = (
+export const setChallengeService = async (
   title,
   description,
   time,
   category,
-  periodicity
+  periodicity,
+  image,
+  userId
 ) => {
+  const uid = auth.currentUser.uid;
   const newChallengeRef = doc(collection(db, "challenges"));
-
   const docData = {
     title: title.value,
     category: category.value,
@@ -28,6 +31,10 @@ export const setChallengeService = (
     time: time.value,
     startDate: getStartDate(),
     endDate: getEndDate(time.value),
+    image,
+    userId: uid,
   };
-  return setDoc(newChallengeRef, docData);
+  await setDoc(newChallengeRef, docData);
+
+  return newChallengeRef.id;
 };
