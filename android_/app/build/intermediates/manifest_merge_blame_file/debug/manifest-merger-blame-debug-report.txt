@@ -1,0 +1,502 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="android.app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="32" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:6:3-76
+11-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:6:20-73
+12    <uses-permission android:name="android.permission.CAMERA" />
+12-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:2:3-63
+12-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:2:20-60
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:3:3-65
+13-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:3:20-62
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:4:3-78
+14-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:4:20-75
+15    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+15-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:5:3-69
+15-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:5:20-66
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:7:3-64
+16-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:7:20-61
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:8:3-79
+17-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:8:20-76
+18
+19    <queries>
+19-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:9:3-15:13
+20        <intent>
+20-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:10:5-14:14
+21            <action android:name="android.intent.action.VIEW" />
+21-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:11:7-59
+21-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:11:15-56
+22
+23            <category android:name="android.intent.category.BROWSABLE" />
+23-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:12:7-68
+23-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:12:17-65
+24
+25            <data android:scheme="https" />
+25-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:13:7-38
+25-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:13:13-35
+26        </intent>
+27        <!-- Query open documents -->
+28        <intent>
+28-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:19:9-21:18
+29            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+29-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-79
+29-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:20:21-76
+30        </intent>
+31        <intent>
+31-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:9-22:18
+32
+33            <!-- Required for picking images from the camera roll if targeting API 30 -->
+34            <action android:name="android.media.action.IMAGE_CAPTURE" />
+34-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:13-73
+34-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:21:21-70
+35        </intent>
+36        <intent>
+36-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:9-27:18
+37
+38            <!-- Required for picking images from the camera if targeting API 30 -->
+39            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+39-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-80
+39-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:21-77
+40        </intent>
+41    </queries>
+42
+43    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+43-->[com.facebook.flipper:flipper:0.54.0] /Users/puigmar/.gradle/caches/transforms-3/2ed1cf6f84ede3558ac0f06ce57f4d62/transformed/jetified-flipper-0.54.0/AndroidManifest.xml:16:5-76
+43-->[com.facebook.flipper:flipper:0.54.0] /Users/puigmar/.gradle/caches/transforms-3/2ed1cf6f84ede3558ac0f06ce57f4d62/transformed/jetified-flipper-0.54.0/AndroidManifest.xml:16:22-73
+44    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+44-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-81
+44-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-78
+45    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+45-->[:expo-updates] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-updates/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:5-79
+45-->[:expo-updates] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-updates/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:11:22-76
+46
+47    <uses-feature
+47-->[com.google.android:cameraview:1.0.0] /Users/puigmar/.gradle/caches/transforms-3/ce85653b13abc9236404d3d662fb0e93/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:25:5-27:36
+48        android:name="android.hardware.camera"
+48-->[com.google.android:cameraview:1.0.0] /Users/puigmar/.gradle/caches/transforms-3/ce85653b13abc9236404d3d662fb0e93/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:26:9-47
+49        android:required="false" />
+49-->[com.google.android:cameraview:1.0.0] /Users/puigmar/.gradle/caches/transforms-3/ce85653b13abc9236404d3d662fb0e93/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:27:9-33
+50    <uses-feature
+50-->[com.google.android:cameraview:1.0.0] /Users/puigmar/.gradle/caches/transforms-3/ce85653b13abc9236404d3d662fb0e93/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:28:5-30:36
+51        android:name="android.hardware.camera.autofocus"
+51-->[com.google.android:cameraview:1.0.0] /Users/puigmar/.gradle/caches/transforms-3/ce85653b13abc9236404d3d662fb0e93/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:29:9-57
+52        android:required="false" />
+52-->[com.google.android:cameraview:1.0.0] /Users/puigmar/.gradle/caches/transforms-3/ce85653b13abc9236404d3d662fb0e93/transformed/jetified-cameraview-1.0.0/AndroidManifest.xml:30:9-33
+53
+54    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create IID tokens -->
+54-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:23:5-68
+54-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:23:22-65
+55    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /> <!-- for android -->
+55-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:25:5-82
+55-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:25:22-79
+56    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+57    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+58    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+59    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+60    <!-- for Samsung -->
+61    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+61-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+61-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:22-83
+62    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+62-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+62-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:22-84
+63    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+63-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+63-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:22-78
+64    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+64-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+64-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:22-80
+65    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+65-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+65-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:22-85
+66    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+66-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+66-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:22-89
+67    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+67-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+67-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:22-81
+68    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+68-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+68-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:22-80
+69    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+69-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+69-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:22-88
+70    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+70-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+70-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:22-89
+71    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+71-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+71-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:22-90
+72    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+72-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+72-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:22-70
+73    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+73-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+73-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:22-79
+74    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+74-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+74-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:22-80
+75    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+75-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+75-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:22-85
+76    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+76-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+76-->[me.leolin:ShortcutBadger:1.1.22] /Users/puigmar/.gradle/caches/transforms-3/7512be181e8c9355dfdda89b87a66839/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
+77    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+77-->[com.android.installreferrer:installreferrer:1.0] /Users/puigmar/.gradle/caches/transforms-3/e76c42f39421b215cd04ac4d592b0306/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:5-110
+77-->[com.android.installreferrer:installreferrer:1.0] /Users/puigmar/.gradle/caches/transforms-3/e76c42f39421b215cd04ac4d592b0306/transformed/jetified-installreferrer-1.0/AndroidManifest.xml:9:22-107
+78
+79    <application
+79-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:3-36:17
+80        android:name="android.app.MainApplication"
+80-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:16-47
+81        android:allowBackup="true"
+81-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:162-188
+82        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+82-->[androidx.core:core:1.6.0] /Users/puigmar/.gradle/caches/transforms-3/df48f9f085e362d0ee42b2061783c370/transformed/core-1.6.0/AndroidManifest.xml:24:18-86
+83        android:debuggable="true"
+84        android:icon="@mipmap/ic_launcher"
+84-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:81-115
+85        android:label="@string/app_name"
+85-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:48-80
+86        android:roundIcon="@mipmap/ic_launcher_round"
+86-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:116-161
+87        android:theme="@style/AppTheme"
+87-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:189-220
+88        android:usesCleartextTraffic="true" >
+88-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:16:221-256
+89        <meta-data
+89-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:17:5-83
+90            android:name="expo.modules.updates.ENABLED"
+90-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:17:16-59
+91            android:value="true" />
+91-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:17:60-80
+92        <meta-data
+92-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:18:5-94
+93            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+93-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:18:16-68
+94            android:value="44.0.0" />
+94-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:18:69-91
+95        <meta-data
+95-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:19:5-106
+96            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+96-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:19:16-80
+97            android:value="ALWAYS" />
+97-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:19:81-103
+98        <meta-data
+98-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:20:5-100
+99            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+99-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:20:16-79
+100            android:value="0" />
+100-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:20:80-97
+101        <meta-data
+101-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:21:5-123
+102            android:name="expo.modules.updates.EXPO_UPDATE_URL"
+102-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:21:16-67
+103            android:value="https://exp.host/@lhayer/ereselmejor" />
+103-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:21:68-120
+104
+105        <activity
+105-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:5-33:16
+106            android:name="android.app.MainActivity"
+106-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:15-43
+107            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+107-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:77-154
+108            android:label="@string/app_name"
+108-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:44-76
+109            android:launchMode="singleTask"
+109-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:155-186
+110            android:screenOrientation="portrait"
+110-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:276-312
+111            android:theme="@style/Theme.App.SplashScreen"
+111-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:230-275
+112            android:windowSoftInputMode="adjustResize" >
+112-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:22:187-229
+113            <intent-filter>
+113-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:23:7-26:23
+114                <action android:name="android.intent.action.MAIN" />
+114-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:24:9-61
+114-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:24:17-58
+115
+116                <category android:name="android.intent.category.LAUNCHER" />
+116-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:25:9-69
+116-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:25:19-66
+117            </intent-filter>
+118            <intent-filter>
+118-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:27:7-32:23
+119                <action android:name="android.intent.action.VIEW" />
+119-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:11:7-59
+119-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:11:15-56
+120
+121                <category android:name="android.intent.category.DEFAULT" />
+121-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:29:9-68
+121-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:29:19-65
+122                <category android:name="android.intent.category.BROWSABLE" />
+122-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:12:7-68
+122-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:12:17-65
+123
+124                <data android:scheme="android.app" />
+124-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:13:7-38
+124-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:13:13-35
+125            </intent-filter>
+126        </activity>
+127        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+127-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:34:5-82
+127-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:34:15-79
+128        <activity
+128-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:35:5-125
+129            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+129-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:35:15-78
+130            android:theme="@style/Base.Theme.AppCompat" />
+130-->/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/src/main/AndroidManifest.xml:35:79-122
+131
+132        <provider
+132-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:9-34:20
+133            android:name="expo.modules.filesystem.FileSystemFileProvider"
+133-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-74
+134            android:authorities="android.app.FileSystemFileProvider"
+134-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-74
+135            android:exported="false"
+135-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-37
+136            android:grantUriPermissions="true" >
+136-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:13-47
+137            <meta-data
+137-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:13-33:70
+138                android:name="android.support.FILE_PROVIDER_PATHS"
+138-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:17-67
+139                android:resource="@xml/file_system_provider_paths" />
+139-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:17-67
+140        </provider> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
+141        <provider
+141-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:35:9-43:20
+142            android:name="expo.modules.imagepicker.ImagePickerFileProvider"
+142-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:36:13-76
+143            android:authorities="android.app.ImagePickerFileProvider"
+143-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:37:13-75
+144            android:exported="false"
+144-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:38:13-37
+145            android:grantUriPermissions="true" >
+145-->[:expo-image-picker] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-image-picker/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:39:13-47
+146            <meta-data
+146-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:13-33:70
+147                android:name="android.support.FILE_PROVIDER_PATHS"
+147-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:17-67
+148                android:resource="@xml/image_picker_provider_paths" />
+148-->[:expo-file-system] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-file-system/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:33:17-67
+149        </provider>
+150
+151        <service
+151-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:9-20:19
+152            android:name="expo.modules.notifications.service.ExpoFirebaseMessagingService"
+152-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-91
+153            android:exported="false" >
+153-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-37
+154            <intent-filter android:priority="-1" >
+154-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:29
+154-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:28-49
+155                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+155-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-78
+155-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:25-75
+156            </intent-filter>
+157        </service>
+158
+159        <receiver
+159-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:22:9-34:20
+160            android:name="expo.modules.notifications.service.NotificationsService"
+160-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:23:13-83
+161            android:enabled="true"
+161-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:24:13-35
+162            android:exported="false" >
+162-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-37
+163            <intent-filter android:priority="-1" >
+163-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-33:29
+163-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:26:28-49
+164                <action android:name="expo.modules.notifications.NOTIFICATION_EVENT" />
+164-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:17-88
+164-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:27:25-85
+165                <action android:name="android.intent.action.BOOT_COMPLETED" />
+165-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:17-79
+165-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:28:25-76
+166                <action android:name="android.intent.action.REBOOT" />
+166-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:17-71
+166-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:29:25-68
+167                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+167-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:30:17-82
+167-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:30:25-79
+168                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+168-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:17-82
+168-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:31:25-79
+169                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+169-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:17-84
+169-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:32:25-81
+170            </intent-filter>
+171        </receiver>
+172
+173        <meta-data
+173-->[:expo-modules-core] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-14:89
+174            android:name="org.unimodules.core.AppLoader#react-native-headless"
+174-->[:expo-modules-core] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-79
+175            android:value="expo.modules.adapters.react.apploader.RNHeadlessAppLoader" />
+175-->[:expo-modules-core] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-modules-core/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-86
+176
+177        <receiver
+177-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:28:9-35:20
+178            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+178-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:29:13-78
+179            android:exported="true"
+179-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:30:13-36
+180            android:permission="com.google.android.c2dm.permission.SEND" >
+180-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:31:13-73
+181            <intent-filter>
+181-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:32:13-34:29
+182                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+182-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:33:17-81
+182-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:33:25-78
+183            </intent-filter>
+184        </receiver>
+185        <!--
+186             FirebaseMessagingService performs security checks at runtime,
+187             but set to not exported to explicitly avoid allowing another app to call it.
+188        -->
+189        <service
+189-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:41:9-48:19
+190            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+190-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:42:13-82
+191            android:directBootAware="true"
+191-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:43:13-43
+192            android:exported="false" >
+192-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:44:13-37
+193            <intent-filter android:priority="-500" >
+193-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-19:29
+193-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:17:28-49
+194                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+194-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:17-78
+194-->[:expo-notifications] /Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/node_modules/expo-notifications/android/build/intermediates/library_manifest/debug/AndroidManifest.xml:18:25-75
+195            </intent-filter>
+196        </service>
+197        <service
+197-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:49:9-55:19
+198            android:name="com.google.firebase.components.ComponentDiscoveryService"
+198-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:50:13-84
+199            android:directBootAware="true"
+199-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:35:13-43
+200            android:exported="false" >
+200-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:51:13-37
+201            <meta-data
+201-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:52:13-54:85
+202                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+202-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:53:17-119
+203                android:value="com.google.firebase.components.ComponentRegistrar" />
+203-->[com.google.firebase:firebase-messaging:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/6bbfd6a561d8f7d429b90af3b25a2ce6/transformed/jetified-firebase-messaging-21.1.0/AndroidManifest.xml:54:17-82
+204            <meta-data
+204-->[com.google.firebase:firebase-datatransport:17.0.10] /Users/puigmar/.gradle/caches/transforms-3/20339772998036ef1b66bd56f54eaa33/transformed/jetified-firebase-datatransport-17.0.10/AndroidManifest.xml:28:13-30:85
+205                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+205-->[com.google.firebase:firebase-datatransport:17.0.10] /Users/puigmar/.gradle/caches/transforms-3/20339772998036ef1b66bd56f54eaa33/transformed/jetified-firebase-datatransport-17.0.10/AndroidManifest.xml:29:17-115
+206                android:value="com.google.firebase.components.ComponentRegistrar" />
+206-->[com.google.firebase:firebase-datatransport:17.0.10] /Users/puigmar/.gradle/caches/transforms-3/20339772998036ef1b66bd56f54eaa33/transformed/jetified-firebase-datatransport-17.0.10/AndroidManifest.xml:30:17-82
+207            <meta-data
+207-->[com.google.firebase:firebase-iid:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/283b93cdc940093d29d8d6b5165e9b83/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:32:13-34:85
+208                android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+208-->[com.google.firebase:firebase-iid:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/283b93cdc940093d29d8d6b5165e9b83/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:33:17-96
+209                android:value="com.google.firebase.components.ComponentRegistrar" />
+209-->[com.google.firebase:firebase-iid:21.1.0] /Users/puigmar/.gradle/caches/transforms-3/283b93cdc940093d29d8d6b5165e9b83/transformed/jetified-firebase-iid-21.1.0/AndroidManifest.xml:34:17-82
+210            <meta-data
+210-->[com.google.firebase:firebase-installations:16.3.5] /Users/puigmar/.gradle/caches/transforms-3/db94b2dd00100fb21a8c278aff505e10/transformed/jetified-firebase-installations-16.3.5/AndroidManifest.xml:18:13-20:85
+211                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+211-->[com.google.firebase:firebase-installations:16.3.5] /Users/puigmar/.gradle/caches/transforms-3/db94b2dd00100fb21a8c278aff505e10/transformed/jetified-firebase-installations-16.3.5/AndroidManifest.xml:19:17-127
+212                android:value="com.google.firebase.components.ComponentRegistrar" />
+212-->[com.google.firebase:firebase-installations:16.3.5] /Users/puigmar/.gradle/caches/transforms-3/db94b2dd00100fb21a8c278aff505e10/transformed/jetified-firebase-installations-16.3.5/AndroidManifest.xml:20:17-82
+213            <!--
+214                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+215                clients to use it as well, by defining this registrar in their own core/common library.
+216            -->
+217            <meta-data
+217-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:43:13-45:85
+218                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+218-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:44:17-121
+219                android:value="com.google.firebase.components.ComponentRegistrar" />
+219-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:45:17-82
+220        </service>
+221        <service
+221-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/puigmar/.gradle/caches/transforms-3/5d65d53a6be121714c1fa558789bef98/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:29:9-35:19
+222            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+222-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/puigmar/.gradle/caches/transforms-3/5d65d53a6be121714c1fa558789bef98/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:30:13-103
+223            android:exported="false" >
+223-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/puigmar/.gradle/caches/transforms-3/5d65d53a6be121714c1fa558789bef98/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:31:13-37
+224            <meta-data
+224-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/puigmar/.gradle/caches/transforms-3/5d65d53a6be121714c1fa558789bef98/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:32:13-34:39
+225                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+225-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/puigmar/.gradle/caches/transforms-3/5d65d53a6be121714c1fa558789bef98/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:33:17-94
+226                android:value="cct" />
+226-->[com.google.android.datatransport:transport-backend-cct:2.3.3] /Users/puigmar/.gradle/caches/transforms-3/5d65d53a6be121714c1fa558789bef98/transformed/jetified-transport-backend-cct-2.3.3/AndroidManifest.xml:34:17-36
+227        </service>
+228        <service
+228-->[com.google.android.datatransport:transport-runtime:2.2.5] /Users/puigmar/.gradle/caches/transforms-3/a53a9b965a78257a8449c3bc898748f7/transformed/jetified-transport-runtime-2.2.5/AndroidManifest.xml:26:9-30:19
+229            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+229-->[com.google.android.datatransport:transport-runtime:2.2.5] /Users/puigmar/.gradle/caches/transforms-3/a53a9b965a78257a8449c3bc898748f7/transformed/jetified-transport-runtime-2.2.5/AndroidManifest.xml:27:13-117
+230            android:exported="false"
+230-->[com.google.android.datatransport:transport-runtime:2.2.5] /Users/puigmar/.gradle/caches/transforms-3/a53a9b965a78257a8449c3bc898748f7/transformed/jetified-transport-runtime-2.2.5/AndroidManifest.xml:28:13-37
+231            android:permission="android.permission.BIND_JOB_SERVICE" >
+231-->[com.google.android.datatransport:transport-runtime:2.2.5] /Users/puigmar/.gradle/caches/transforms-3/a53a9b965a78257a8449c3bc898748f7/transformed/jetified-transport-runtime-2.2.5/AndroidManifest.xml:29:13-69
+232        </service>
+233
+234        <receiver
+234-->[com.google.android.datatransport:transport-runtime:2.2.5] /Users/puigmar/.gradle/caches/transforms-3/a53a9b965a78257a8449c3bc898748f7/transformed/jetified-transport-runtime-2.2.5/AndroidManifest.xml:32:9-34:40
+235            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+235-->[com.google.android.datatransport:transport-runtime:2.2.5] /Users/puigmar/.gradle/caches/transforms-3/a53a9b965a78257a8449c3bc898748f7/transformed/jetified-transport-runtime-2.2.5/AndroidManifest.xml:33:13-132
+236            android:exported="false" />
+236-->[com.google.android.datatransport:transport-runtime:2.2.5] /Users/puigmar/.gradle/caches/transforms-3/a53a9b965a78257a8449c3bc898748f7/transformed/jetified-transport-runtime-2.2.5/AndroidManifest.xml:34:13-37
+237
+238        <provider
+238-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:26:9-31:39
+239            android:name="com.google.firebase.provider.FirebaseInitProvider"
+239-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:27:13-77
+240            android:authorities="android.app.firebaseinitprovider"
+240-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:28:13-72
+241            android:directBootAware="true"
+241-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:29:13-43
+242            android:exported="false"
+242-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:30:13-37
+243            android:initOrder="100" />
+243-->[com.google.firebase:firebase-common:19.5.0] /Users/puigmar/.gradle/caches/transforms-3/a0615bb64fd647b7b419eb420f43e150/transformed/jetified-firebase-common-19.5.0/AndroidManifest.xml:31:13-36
+244
+245        <meta-data
+245-->[com.google.android.gms:play-services-basement:17.0.0] /Users/puigmar/.gradle/caches/transforms-3/a26dad2e65f443c1c8f098c140ff8ec8/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:23:9-25:69
+246            android:name="com.google.android.gms.version"
+246-->[com.google.android.gms:play-services-basement:17.0.0] /Users/puigmar/.gradle/caches/transforms-3/a26dad2e65f443c1c8f098c140ff8ec8/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:24:13-58
+247            android:value="@integer/google_play_services_version" />
+247-->[com.google.android.gms:play-services-basement:17.0.0] /Users/puigmar/.gradle/caches/transforms-3/a26dad2e65f443c1c8f098c140ff8ec8/transformed/jetified-play-services-basement-17.0.0/AndroidManifest.xml:25:13-66
+248
+249        <provider
+249-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/puigmar/.gradle/caches/transforms-3/6f99a7f82ac53e7e6982decf0e8d8275/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:25:9-29:43
+250            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+250-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/puigmar/.gradle/caches/transforms-3/6f99a7f82ac53e7e6982decf0e8d8275/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:26:13-79
+251            android:authorities="android.app.lifecycle-process"
+251-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/puigmar/.gradle/caches/transforms-3/6f99a7f82ac53e7e6982decf0e8d8275/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:27:13-69
+252            android:exported="false"
+252-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/puigmar/.gradle/caches/transforms-3/6f99a7f82ac53e7e6982decf0e8d8275/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:28:13-37
+253            android:multiprocess="true" />
+253-->[androidx.lifecycle:lifecycle-process:2.2.0] /Users/puigmar/.gradle/caches/transforms-3/6f99a7f82ac53e7e6982decf0e8d8275/transformed/jetified-lifecycle-process-2.2.0/AndroidManifest.xml:29:13-40
+254
+255        <service
+255-->[androidx.room:room-runtime:2.3.0] /Users/puigmar/.gradle/caches/transforms-3/720b418cbaef1ab723af2b0b940c7852/transformed/room-runtime-2.3.0/AndroidManifest.xml:25:9-28:40
+256            android:name="androidx.room.MultiInstanceInvalidationService"
+256-->[androidx.room:room-runtime:2.3.0] /Users/puigmar/.gradle/caches/transforms-3/720b418cbaef1ab723af2b0b940c7852/transformed/room-runtime-2.3.0/AndroidManifest.xml:26:13-74
+257            android:directBootAware="true"
+257-->[androidx.room:room-runtime:2.3.0] /Users/puigmar/.gradle/caches/transforms-3/720b418cbaef1ab723af2b0b940c7852/transformed/room-runtime-2.3.0/AndroidManifest.xml:27:13-43
+258            android:exported="false" />
+258-->[androidx.room:room-runtime:2.3.0] /Users/puigmar/.gradle/caches/transforms-3/720b418cbaef1ab723af2b0b940c7852/transformed/room-runtime-2.3.0/AndroidManifest.xml:28:13-37
+259    </application>
+260
+261</manifest>
