@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
       if (!authState.userData) {
-        setAuthState(dbUserToDto({ id: auth.uid, ...auth.currentUser }));
+        handleSetAuthState(auth.currentUser);
       }
       goToHome();
     } catch (error) {
@@ -130,6 +130,16 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const UpdateBackground = (image) => {
+    setAuthState({
+      ...authState,
+      userData: {
+        ...authState.userData,
+        background: image,
+      },
+    });
+  };
+
   const UpdateAvatar = async (avatar) => {
     try {
       await updateProfile(auth.currentUser, {
@@ -150,6 +160,7 @@ export const AuthProvider = ({ children }) => {
 
   const handleSetAuthState = async (user) => {
     const extraInfo = await getExtraProfileService(user);
+    console.log("extraInfo: ", extraInfo);
     const data = { ...user, ...extraInfo };
     setAuthState(dbUserToDto(data));
   };
@@ -176,6 +187,7 @@ export const AuthProvider = ({ children }) => {
         Register,
         UpdateUserProfile,
         UpdateAvatar,
+        UpdateBackground,
         Logout,
         isLoading,
       }}

@@ -1,4 +1,5 @@
 const dbUserToDto = (user) => {
+  console.log("user: ", user);
   return {
     isLoggedIn: true,
     userData: {
@@ -7,6 +8,7 @@ const dbUserToDto = (user) => {
       email: user.email,
       avatar: user.photoURL,
       token: user.notificationToken,
+      background: user.image,
     },
   };
 };

@@ -1,43 +1,39 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import { TouchableOpacity, View, Image } from "react-native";
 import { loadImageFromGallery } from "app/utils/imageUtil";
 import { stylesHomeBackground } from "./HomeBackgrounStyles";
 import PlusIcon from "assets/plus.svg";
 import { setBackgroundService } from "../../../services/setBackground";
-import { getBackgroundService } from "../../../services/getBackground";
-import { useFocusEffect } from "@react-navigation/native";
+import { useAuth } from "../../../context/AuthContext";
 
-export const HomeBackground = (userId) => {
-  const [image, setImage] = useState();
-  const [userimage, setuserimage] = useState([""]);
+export const HomeBackground = () => {
+  const { authState, UpdateBackground } = useAuth();
 
   const changeBackGround = async () => {
-    const result = await loadImageFromGallery([1, 1]);
-    setImage(result.image);
-    setBackgroundService(result.image, userId);
+    try {
+      const result = await loadImageFromGallery([1, 1]);
+      const image = await setBackgroundService(
+        result.image,
+        authState.userData?.id
+      );
+      UpdateBackground(image);
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
-
-  const handleBackground = async () => {
-    const userimage = await getBackgroundService(userId);
-    setuserimage(userimage);
-  };
-
-  useFocusEffect(
-    useCallback(() => {
-      handleBackground();
-    }, [image])
-  );
 
   return (
     <View style={stylesHomeBackground.container}>
       <Image
-        source={{ uri: userimage.image }}
+        source={{ uri: authState.userData?.background }}
         style={stylesHomeBackground.image}
       />
       <TouchableOpacity
         style={[
           stylesHomeBackground.button,
-          image ? stylesHomeBackground.buttonOverlay : "",
+          authState.userData?.background
+            ? stylesHomeBackground.buttonOverlay
+            : "",
         ]}
         onPress={changeBackGround}
       >
