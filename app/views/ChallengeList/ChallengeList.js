@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Container from "widgets/shared/Container/Container";
 import { View, Text } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 
 import { challengeListStyles } from "./ChallengeListStyles";
 import List from "app/widgets/shared/List/List";
 import { getChallengesService } from "../../services/getChallengesService";
 import ChallengeCard from "../../widgets/shared/ChallengeCard/ChallengeCard";
-import { useFocusEffect } from "@react-navigation/native";
 import { useAuth } from "../../context/AuthContext";
 
 const Item = ({ item, onPress, backgroundColor }) => {
