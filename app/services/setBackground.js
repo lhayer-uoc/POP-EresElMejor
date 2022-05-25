@@ -1,48 +1,22 @@
 import {
-  doc,
-  setDoc,
   collection,
-  query,
   where,
-  getDocs,
-  limit,
+  query,
   updateDoc,
+  getDocs,
 } from "firebase/firestore";
 import { db } from "../config/db";
 
 export const setBackgroundService = async (image, userId) => {
-  const collectionRef = collection(db, "users");
-  const q = query(collectionRef, where("userId", "==", userId), limit(1));
-
   try {
+    const profileRef = collection(db, "users");
+    const q = query(profileRef, where("userId", "==", userId));
     const querySnapshot = await getDocs(q);
-    let idDocument = "";
-    querySnapshot.forEach((doc) => {
-      idDocument = { id: doc.id };
-    });
-    if (idDocument.length !== 0) {
-      try {
-        const docRef = doc(db, "users", idDocument.id);
-        await updateDoc(docRef, {
-          image: image,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      const docData = {
-        image,
-        userId,
-      };
-      const UserRef = doc(collection(db, "users"));
-      try {
-        setDoc(UserRef, docData);
-      } catch (error) {
-        console.log(error);
-        return false;
-      }
-    }
+    querySnapshot.docs.map((doc) => updateDoc(doc.ref, { image }));
+
+    return image;
   } catch (error) {
-    console.log("Ha ocurrido un error: ", error);
+    console.log("error: ", error);
+    return false;
   }
 };

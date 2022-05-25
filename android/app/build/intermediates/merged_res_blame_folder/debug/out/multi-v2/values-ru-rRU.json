@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/puigmar/cursos/UOC/POP/ereselmejor/POP-EresElMejor/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru-rRU/values-ru-rRU.xml",
+            "outputFile": "/home/luciano/Projects/POP-Projects/POP-EresElMejor/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ru-rRU/values-ru-rRU.xml",
             "map": [
                 {
-                    "source": "/Users/puigmar/.gradle/caches/transforms-3/2ec227d00ed6d3c0d4d575f8597a9f00/transformed/jetified-android-image-cropper-2.8.0/res/values-ru-rRU/values-ru-rRU.xml",
+                    "source": "/home/luciano/.gradle/caches/transforms-3/2ec227d00ed6d3c0d4d575f8597a9f00/transformed/jetified-android-image-cropper-2.8.0/res/values-ru-rRU/values-ru-rRU.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",
