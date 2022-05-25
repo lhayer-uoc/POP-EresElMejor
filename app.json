@@ -14,8 +14,8 @@
     "sdkVersion": "44.0.0",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "resizeMode": "cover",
+      "backgroundColor": "#ffcc00"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
