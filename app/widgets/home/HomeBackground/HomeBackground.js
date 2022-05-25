@@ -1,25 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import { TouchableOpacity, View, Image } from "react-native";
 import { loadImageFromGallery } from "app/utils/imageUtil";
 import { stylesHomeBackground } from "./HomeBackgrounStyles";
 import PlusIcon from "assets/plus.svg";
+import { setBackgroundService } from "../../../services/setBackground";
+import { useAuth } from "../../../context/AuthContext";
 
 export const HomeBackground = () => {
-  const [image, setImage] = useState();
+  const { authState, UpdateBackground } = useAuth();
 
   const changeBackGround = async () => {
-    //array como parametro las dimensiones de la imagen
-    const result = await loadImageFromGallery([1, 1]);
-    setImage(result.image);
+    try {
+      const result = await loadImageFromGallery([1, 1]);
+      const image = await setBackgroundService(
+        result.image,
+        authState.userData?.id
+      );
+      UpdateBackground(image);
+    } catch (error) {
+      console.log("error: ", error);
+    }
   };
 
   return (
     <View style={stylesHomeBackground.container}>
-      <Image source={{ uri: image }} style={stylesHomeBackground.image} />
+      <Image
+        source={{ uri: authState.userData?.background }}
+        style={stylesHomeBackground.image}
+      />
       <TouchableOpacity
         style={[
           stylesHomeBackground.button,
-          image ? stylesHomeBackground.buttonOverlay : "",
+          authState.userData?.background
+            ? stylesHomeBackground.buttonOverlay
+            : "",
         ]}
         onPress={changeBackGround}
       >

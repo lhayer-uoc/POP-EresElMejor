@@ -5,6 +5,6 @@ export const containerStyles = StyleSheet.create({
     flex: 1,
   },
   containerNegativeSpace: {
-    marginTop: -40,
+    marginTop: -55,
   },
 });

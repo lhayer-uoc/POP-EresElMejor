@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/luciano/Projects/POP-Projects/POP-EresElMejor/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/luciano/.gradle/caches/transforms-3/8b0353ab1d6585fbbd1ebfcd44d22e76/transformed/appcompat-1.2.0/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -17,6 +17,9 @@ const emptyField = (value) => {
   }
   return true;
 };
+const emptyPossibility= (value)=>{
+  return true;
+}
 
 const onlyNumbers = (value) => {
   const hasOnlyNumbers = /^[0-9]+$/.test(value);
@@ -28,4 +31,4 @@ const onlyNumbers = (value) => {
   return true;
 };
 
-export { emailValidation, emptyField, onlyNumbers };
+export { emailValidation, emptyField, onlyNumbers, emptyPossibility };

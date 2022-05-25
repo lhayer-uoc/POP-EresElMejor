@@ -3,9 +3,9 @@ import { View, Text } from "react-native";
 
 import { styles } from "./HeadingTextBlockStyles";
 
-const HeadingTextBlock = ({ heading1 = "", heading2 = "" }) => {
+const HeadingTextBlock = ({ heading1 = "", heading2 = "", style }) => {
   return (
-    <View>
+    <View style={style}>
       <Text style={styles.heading1}>{heading1.toUpperCase()}</Text>
       <Text style={styles.heading2}>{heading2}</Text>
     </View>

@@ -10,9 +10,11 @@ import { useContext } from "react";
 import { createContext } from "react";
 import { auth } from "../config/db";
 import { useNavigation } from "@react-navigation/native";
-import { StackActions } from "@react-navigation/native";
 import { showMessage } from "react-native-flash-message";
 import dbUserToDto from "./dto/dbUserToDto";
+import generatePushNotificationsToken from "../utils/notifications";
+import { setUserExtraProfile } from "../services/setUserExtraProfile";
+import { getExtraProfileService } from "../services/getExtraProfileService";
 
 export const authInitialState = {
   isLoggedIn: false,
@@ -34,7 +36,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await signInWithEmailAndPassword(auth, email.value, password.value);
       if (!authState.userData) {
-        setAuthState(dbUserToDto(auth.currentUser));
+        handleSetAuthState(auth.currentUser);
       }
       goToHome();
     } catch (error) {
@@ -60,18 +62,20 @@ export const AuthProvider = ({ children }) => {
   const Register = async (formData) => {
     setIsLoading(true);
     try {
-      const registerResponse = await createUserWithEmailAndPassword(
+      const createUser = await createUserWithEmailAndPassword(
         auth,
         formData.email.value,
         formData.password.value
       );
-      await UpdateUserProfile(registerResponse.user, {
-        displayName: formData.name.value,
-      });
+
+      await UpdateUserProfile(formData);
+
+      const token = await generatePushNotificationsToken();
+      await setUserExtraProfile({ notificationToken: token }, createUser.user);
 
       const isLogged = auth.currentUser;
       if (isLogged) {
-        setAuthState(dbUserToDto(auth.currentUser));
+        setAuthState(dbUserToDto({ id: auth.uid, ...auth.currentUser }));
         goToHome();
       } else {
         navigation.navigate("Login");
@@ -86,23 +90,36 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
-  const UpdateUserProfile = async (userData) => {
+  const UpdateUserProfile = async (formData) => {
     const profileData = {};
-    for (let field in userData) {
-      profileData[field] = userData[field].value;
+    for (let field in formData) {
+      profileData[field] = formData[field]?.value;
     }
+
     setIsLoading(true);
+
+    let updateData = {
+      displayName: formData.name.value,
+    };
+
+    if (!!profileData?.avatar) {
+      updateData["photoURL"] = profileData.avatar;
+    }
+
     try {
       await updateProfile(auth.currentUser, {
-        displayName: profileData.name,
+        ...updateData,
       });
-      await updateEmail(auth.currentUser, profileData.email);
-      setAuthState(() => ({
-        isLoggedIn: true,
+
+      await updateEmail(auth.currentUser, formData.email.value);
+
+      setAuthState({
+        ...authState,
         userData: {
+          ...authState.userData,
           ...profileData,
         },
-      }));
+      });
       showMessage({
         message: "Tus cambios se han guardado",
         type: "success",
@@ -113,6 +130,40 @@ export const AuthProvider = ({ children }) => {
     setIsLoading(false);
   };
 
+  const UpdateBackground = (image) => {
+    setAuthState({
+      ...authState,
+      userData: {
+        ...authState.userData,
+        background: image,
+      },
+    });
+  };
+
+  const UpdateAvatar = async (avatar) => {
+    try {
+      await updateProfile(auth.currentUser, {
+        photoURL: avatar,
+      });
+      setAuthState({
+        ...authState,
+        userData: {
+          ...authState.userData,
+          avatar,
+        },
+      });
+    } catch (error) {
+      console.log("error: ", error);
+      return false;
+    }
+  };
+
+  const handleSetAuthState = async (user) => {
+    const extraInfo = await getExtraProfileService(user);
+    const data = { ...user, ...extraInfo };
+    setAuthState(dbUserToDto(data));
+  };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (!user) {
@@ -120,7 +171,7 @@ export const AuthProvider = ({ children }) => {
         return;
       }
       goToHome();
-      setAuthState(dbUserToDto(user));
+      handleSetAuthState({ id: auth.uid, ...user });
     });
     unsubscribe();
 
@@ -134,6 +185,8 @@ export const AuthProvider = ({ children }) => {
         Login,
         Register,
         UpdateUserProfile,
+        UpdateAvatar,
+        UpdateBackground,
         Logout,
         isLoading,
       }}
